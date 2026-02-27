@@ -1,16 +1,105 @@
-# React + Vite
+# 🤖 AI Resume Builder
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A web-based AI-powered Resume Builder built using React that helps students and job seekers create professional resumes easily. This application collects user information, allows template selection, enhances content using AI, and enables PDF download of the final resume.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## React Compiler
+* 📝 Dynamic Resume Form (Personal Details, Education, Skills, Experience, Projects)
+* 🎨 Multiple Professional Resume Templates
+* 👀 Live Template Preview
+* 🤖 AI-generated Professional Summary
+* 💡 Smart Skill Suggestions
+* 📄 One-click PDF Download
+* 📱 Responsive Design
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🛠️ Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+**Frontend**
+
+* React.js
+* Vite
+* Tailwind CSS (if used)
+
+**Backend (Planned / Optional)**
+
+* Node.js
+* Express.js
+
+**AI Integration**
+
+* Free AI API (HuggingFace / Gemini / OpenAI)
+
+**PDF Generation**
+
+* jsPDF / html2pdf.js
+
+---
+
+## 📂 Project Structure
+
+```
+resume-maker/
+│
+├── public/
+├── src/
+│   ├── components/
+│   ├── pages/
+│   ├── utils/
+│   └── App.jsx
+│
+├── package.json
+├── vite.config.js
+└── README.md
+```
+
+---
+
+## 🔄 How It Works
+
+1. User enters resume details in the form.
+2. System stores the data in React state.
+3. User selects a resume template.
+4. User details are dynamically injected into the template.
+5. AI enhances the resume content.
+6. Final resume is generated and downloaded as PDF.
+
+---
+
+## 📥 Installation & Setup
+
+```bash
+# Clone the repository
+git clone https://github.com/ARUNRG3005/resume-maker.git
+
+# Navigate to project folder
+cd resume-maker
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+```
+
+---
+
+## 🎯 Future Enhancements
+
+* ATS Score Checker
+* User Authentication & Resume Save Feature
+* LinkedIn Profile Import
+* Multiple Language Support
+* Cloud Storage Integration
+
+---
+
+## 📌 Author
+
+Arun
+IT Student
+
+
