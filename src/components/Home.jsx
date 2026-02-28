@@ -1,5 +1,4 @@
-import React from 'react';
-import floatingResume from '../assets/floating_resume.png';
+import floatingResumeVideo from '../assets/floating_resume.mp4';
 import amLogo from '../assets/am_logo.jpg';
 import { Sparkles, FileText, ArrowRight, Zap, Palette, CheckCircle } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
@@ -107,16 +106,23 @@ export default function Home({ onStart, theme, toggleTheme }) {
                             transform: 'translateZ(-10px)'
                         }}></div>
 
-                        {/* The generated image */}
-                        <img
-                            src={floatingResume}
-                            alt="Futuristic Floating Resume"
+                        {/* The template video */}
+                        <video
+                            src={floatingResumeVideo}
+                            autoPlay
+                            loop
+                            muted
+                            playsInline
                             style={{
                                 width: '100%',
-                                maxWidth: '500px',
+                                maxWidth: '650px',
+                                height: 'auto',
+                                maxHeight: '75vh',
                                 borderRadius: '16px',
                                 border: '1px solid rgba(255, 255, 255, 0.15)',
-                                objectFit: 'cover'
+                                objectFit: 'contain',
+                                boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5), var(--neon-glow)',
+                                backgroundColor: 'rgba(0,0,0,0.2)'
                             }}
                         />
                     </div>
