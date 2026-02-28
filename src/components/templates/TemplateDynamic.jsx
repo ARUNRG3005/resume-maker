@@ -43,10 +43,10 @@ export default function TemplateDynamic({ data }) {
                         <div>
                             <h3 style={{ fontSize: '1.2rem', fontWeight: 700, margin: '0 0 1rem 0', color: 'white', borderBottom: '2px solid rgba(255,255,255,0.2)', paddingBottom: '0.5rem', textTransform: 'uppercase' }}>Skills</h3>
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', fontSize: '0.95rem', color: '#e0e7ff' }}>
-                                {skills.map(skill => (
-                                    <div key={skill.id} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                                {skills.map((skill, index) => (
+                                    <div key={index} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                                         <div style={{ width: '6px', height: '6px', background: '#38bdf8', borderRadius: '50%' }}></div>
-                                        {skill.name}
+                                        {skill}
                                     </div>
                                 ))}
                             </div>

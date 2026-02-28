@@ -10,7 +10,7 @@ const genAI = API_KEY ? new GoogleGenerativeAI(API_KEY) : null;
 // Use the standard model for general text tasks
 const getModel = () => {
     if (!genAI) throw new Error("Gemini API key is not configured.");
-    return genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    return genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 };
 
 export const generateSummary = async (jobTitle, experience, skills) => {

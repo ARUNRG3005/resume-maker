@@ -83,7 +83,7 @@ export default function TemplateTech({ data }) {
                                     <div key={proj.id} style={{ border: '1px solid #e2e8f0', borderRadius: '8px', padding: '1.5rem', background: 'white' }}>
                                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
                                             <h4 style={{ fontSize: '1.1rem', fontWeight: 700, margin: 0, color: '#0f172a' }}>{proj.name}</h4>
-                                            {proj.link && <a href={proj.link} style={{ display: 'inline-block', fontSize: '0.85rem', color: 'white', background: '#0ea5e9', padding: '0.2rem 0.6rem', borderRadius: '4px', textDecoration: 'none', fontWeight: 600 }}>Source</a>}
+                                            {proj.link && <a href={proj.link} style={{ display: 'inline-block', fontSize: '0.85rem', color: '#ffffff', background: '#0ea5e9', padding: '0.2rem 0.6rem', borderRadius: '4px', textDecoration: 'none', fontWeight: 600 }}>Source</a>}
                                         </div>
                                         <p style={{ fontSize: '0.9rem', color: '#64748b', marginBottom: '0.75rem' }}>{formatDate(proj.startDate)} - {formatDate(proj.endDate)}</p>
                                         {proj.description && (
@@ -105,9 +105,9 @@ export default function TemplateTech({ data }) {
                                 // Tech Stack
                             </h3>
                             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
-                                {skills.map(skill => (
-                                    <span key={skill.id} style={{ background: '#f1f5f9', color: '#334155', padding: '0.4rem 0.8rem', borderRadius: '4px', fontSize: '0.9rem', fontWeight: 600, border: '1px solid #e2e8f0' }}>
-                                        {skill.name}
+                                {skills.map((skill, index) => (
+                                    <span key={index} style={{ background: '#f1f5f9', color: '#334155', padding: '0.4rem 0.8rem', borderRadius: '4px', fontSize: '0.9rem', fontWeight: 600, border: '1px solid #e2e8f0' }}>
+                                        {skill}
                                     </span>
                                 ))}
                             </div>

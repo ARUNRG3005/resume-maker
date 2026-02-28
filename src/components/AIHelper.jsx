@@ -10,10 +10,6 @@ export default function AIHelper({ onResult, action, payload, tooltip }) {
         setError('');
 
         try {
-            if (!import.meta.env.VITE_GEMINI_API_KEY) {
-                throw new Error("Missing API Key. Please add VITE_GEMINI_API_KEY to your .env file.");
-            }
-
             let result = null;
             // We dynamically import ai.js to avoid loading it if not used immediately
             const ai = await import('../services/ai.js');

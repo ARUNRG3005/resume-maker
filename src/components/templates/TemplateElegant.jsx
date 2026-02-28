@@ -49,9 +49,9 @@ export default function TemplateElegant({ data }) {
                         <section style={{ marginBottom: '2.5rem' }}>
                             <h3 style={{ fontSize: '1.2rem', textTransform: 'uppercase', letterSpacing: '2px', borderBottom: '1px solid #cbd5e1', paddingBottom: '0.5rem', marginBottom: '1rem', color: '#0f172a' }}>Expertise</h3>
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', fontFamily: "'Inter', sans-serif", fontSize: '0.95rem' }}>
-                                {skills.map(skill => (
-                                    <div key={skill.id} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                                        <span style={{ color: '#64748b' }}>•</span> {skill.name}
+                                {skills.map((skill, index) => (
+                                    <div key={index} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                                        <span style={{ color: '#64748b' }}>•</span> {skill}
                                     </div>
                                 ))}
                             </div>

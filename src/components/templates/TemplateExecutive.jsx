@@ -131,9 +131,9 @@ export default function TemplateExecutive({ data }) {
                         <section style={{ marginBottom: '2.5rem' }}>
                             <h3 style={{ fontSize: '1.3rem', fontWeight: 700, color: '#1e3a8a', borderBottom: '1px solid #e5e7eb', paddingBottom: '0.5rem', marginBottom: '1.5rem', textTransform: 'uppercase' }}>Core Competencies</h3>
                             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', fontFamily: "'Arial', sans-serif" }}>
-                                {skills.map(skill => (
-                                    <span key={skill.id} style={{ color: '#111827', fontSize: '0.95rem', fontWeight: 600, borderRight: '1px solid #d1d5db', paddingRight: '0.75rem' }}>
-                                        {skill.name}
+                                {skills.map((skill, index) => (
+                                    <span key={index} style={{ color: '#111827', fontSize: '0.95rem', fontWeight: 600, borderRight: '1px solid #d1d5db', paddingRight: '0.75rem' }}>
+                                        {skill}
                                     </span>
                                 ))}
                             </div>

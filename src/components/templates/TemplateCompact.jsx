@@ -108,7 +108,7 @@ export default function TemplateCompact({ data }) {
                     <section style={{ flex: 1 }}>
                         <h3 style={{ fontSize: '12px', fontWeight: 700, borderBottom: '1px solid #000', paddingBottom: '2px', marginBottom: '6px', textTransform: 'uppercase' }}>Skills</h3>
                         <p style={{ margin: 0 }}>
-                            {skills.map(s => s.name).join(', ')}
+                            {skills.join(', ')}
                         </p>
                     </section>
                 )}
