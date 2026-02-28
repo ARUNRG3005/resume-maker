@@ -95,7 +95,7 @@ export default function Home({ onStart, theme, toggleTheme }) {
                     </div>
 
                     {/* Right Column: Hero Graphic */}
-                    <div style={{ position: 'relative', display: 'flex', justifyContent: 'center' }} className="animate-float">
+                    <div style={{ position: 'relative', display: 'flex', justifyContent: 'center' }} className="animate-float-3d">
                         {/* Decorative frame */}
                         <div style={{
                             position: 'absolute',
@@ -103,7 +103,8 @@ export default function Home({ onStart, theme, toggleTheme }) {
                             background: 'linear-gradient(135deg, rgba(0, 240, 255, 0.2), rgba(255, 0, 234, 0.2))',
                             borderRadius: '24px',
                             filter: 'blur(20px)',
-                            zIndex: -1
+                            zIndex: -1,
+                            transform: 'translateZ(-10px)'
                         }}></div>
 
                         {/* The generated image */}
@@ -114,8 +115,7 @@ export default function Home({ onStart, theme, toggleTheme }) {
                                 width: '100%',
                                 maxWidth: '500px',
                                 borderRadius: '16px',
-                                boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5), var(--neon-glow)',
-                                border: '1px solid rgba(255, 255, 255, 0.1)',
+                                border: '1px solid rgba(255, 255, 255, 0.15)',
                                 objectFit: 'cover'
                             }}
                         />
