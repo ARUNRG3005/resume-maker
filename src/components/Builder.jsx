@@ -17,7 +17,29 @@ import TemplateTech from './templates/TemplateTech';
 import TemplateExecutive from './templates/TemplateExecutive';
 import TemplateCompact from './templates/TemplateCompact';
 import TemplateDynamic from './templates/TemplateDynamic';
+import TemplateMinimal from './templates/TemplateMinimal';
+import TemplateCorporate from './templates/TemplateCorporate';
+import TemplateModernAccent from './templates/TemplateModernAccent';
+import TemplateGrid from './templates/TemplateGrid';
+import TemplateSidebar from './templates/TemplateSidebar';
+
 import ThemeToggle from './ThemeToggle';
+
+const TEMPLATES = [
+    { id: 'minimalist', name: 'Minimalist', component: TemplateMinimalist, color: '#f3f4f6' },
+    { id: 'modern', name: 'Modern Split', component: TemplateModern, color: '#1e293b' },
+    { id: 'creative', name: 'Creative Focus', component: TemplateCreative, color: '#6366f1' },
+    { id: 'elegant', name: 'Elegant Serif', component: TemplateElegant, color: '#0f172a' },
+    { id: 'tech', name: 'Tech Terminal', component: TemplateTech, color: '#0ea5e9' },
+    { id: 'executive', name: 'Executive Classic', component: TemplateExecutive, color: '#1e3a8a' },
+    { id: 'compact', name: 'Ultra Compact', component: TemplateCompact, color: '#e5e7eb' },
+    { id: 'dynamic', name: 'Dynamic Sidebar', component: TemplateDynamic, color: '#4338ca' },
+    { id: 'minimal', name: 'Strict Minimal', component: TemplateMinimal, color: '#ffffff' },
+    { id: 'corporate', name: 'Corporate Standard', component: TemplateCorporate, color: '#374151' },
+    { id: 'modern-accent', name: 'Modern Accent', component: TemplateModernAccent, color: '#10b981' },
+    { id: 'grid', name: 'Masonry Grid', component: TemplateGrid, color: '#f97316' },
+    { id: 'sidebar', name: 'Slate Sidebar', component: TemplateSidebar, color: '#334155' }
+];
 
 const steps = [
     { id: 'personal', label: '1. Personal' },
@@ -146,14 +168,16 @@ export default function Builder({ onBackHome, theme, toggleTheme }) {
                     <div className="preview-container animate-fade-in">
                         <div className="preview-toolbar glass-panel" style={{ flexWrap: 'wrap', gap: '1rem', justifyContent: 'center' }}>
                             <div className="template-selector" style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', justifyContent: 'center', width: '100%' }}>
-                                <button className={`btn ${activeTemplate === 'minimalist' ? 'btn-primary' : 'btn-outline'}`} onClick={() => setActiveTemplate('minimalist')} style={{ padding: '0.5rem 1rem' }}>Minimalist</button>
-                                <button className={`btn ${activeTemplate === 'modern' ? 'btn-primary' : 'btn-outline'}`} onClick={() => setActiveTemplate('modern')} style={{ padding: '0.5rem 1rem' }}>Modern</button>
-                                <button className={`btn ${activeTemplate === 'creative' ? 'btn-primary' : 'btn-outline'}`} onClick={() => setActiveTemplate('creative')} style={{ padding: '0.5rem 1rem' }}>Creative Theme</button>
-                                <button className={`btn ${activeTemplate === 'elegant' ? 'btn-primary' : 'btn-outline'}`} onClick={() => setActiveTemplate('elegant')} style={{ padding: '0.5rem 1rem' }}>Elegant (Photo)</button>
-                                <button className={`btn ${activeTemplate === 'tech' ? 'btn-primary' : 'btn-outline'}`} onClick={() => setActiveTemplate('tech')} style={{ padding: '0.5rem 1rem' }}>Tech (Photo)</button>
-                                <button className={`btn ${activeTemplate === 'executive' ? 'btn-primary' : 'btn-outline'}`} onClick={() => setActiveTemplate('executive')} style={{ padding: '0.5rem 1rem' }}>Executive (Photo)</button>
-                                <button className={`btn ${activeTemplate === 'compact' ? 'btn-primary' : 'btn-outline'}`} onClick={() => setActiveTemplate('compact')} style={{ padding: '0.5rem 1rem' }}>Compact</button>
-                                <button className={`btn ${activeTemplate === 'dynamic' ? 'btn-primary' : 'btn-outline'}`} onClick={() => setActiveTemplate('dynamic')} style={{ padding: '0.5rem 1rem' }}>Dynamic Sidebar (Photo)</button>
+                                {TEMPLATES.map(tmpl => (
+                                    <button
+                                        key={tmpl.id}
+                                        className={`btn ${activeTemplate === tmpl.id ? 'btn-primary' : 'btn-outline'}`}
+                                        onClick={() => setActiveTemplate(tmpl.id)}
+                                        style={{ padding: '0.5rem 1rem' }}
+                                    >
+                                        {tmpl.name}
+                                    </button>
+                                ))}
                             </div>
                             <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', width: '100%', marginTop: '0.5rem', borderTop: '1px solid var(--border)', paddingTop: '1rem' }}>
                                 <button className="btn btn-outline" onClick={handlePrev}><ArrowLeft size={16} /> Data Entry</button>
@@ -163,14 +187,13 @@ export default function Builder({ onBackHome, theme, toggleTheme }) {
 
                         <div className="resume-preview-wrapper" style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
                             <div className="resume-document" id="resume-preview-document">
-                                {activeTemplate === 'minimalist' && <TemplateMinimalist data={resumeData} />}
-                                {activeTemplate === 'modern' && <TemplateModern data={resumeData} />}
-                                {activeTemplate === 'creative' && <TemplateCreative data={resumeData} />}
-                                {activeTemplate === 'elegant' && <TemplateElegant data={resumeData} />}
-                                {activeTemplate === 'tech' && <TemplateTech data={resumeData} />}
-                                {activeTemplate === 'executive' && <TemplateExecutive data={resumeData} />}
-                                {activeTemplate === 'compact' && <TemplateCompact data={resumeData} />}
-                                {activeTemplate === 'dynamic' && <TemplateDynamic data={resumeData} />}
+                                {TEMPLATES.map(tmpl => {
+                                    if (activeTemplate === tmpl.id) {
+                                        const TemplateComponent = tmpl.component;
+                                        return <TemplateComponent key={tmpl.id} data={resumeData} />;
+                                    }
+                                    return null;
+                                })}
                             </div>
                         </div>
                     </div>
