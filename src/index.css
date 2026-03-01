@@ -259,9 +259,11 @@ select {
 
 .resume-document {
   margin: 2rem auto;
-  width: 100%;
-  max-width: 8.5in;
-  min-height: 11in;
+  width: 816px !important;
+  /* Strictly fixed to 8.5in (96dpi) */
+  min-height: 1056px;
+  /* Exactly 11in */
+  flex-shrink: 0;
   background: white;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
   box-sizing: border-box;
