@@ -70,16 +70,29 @@ export default function Builder({ onBackHome, theme, toggleTheme }) {
         setResumeData(prev => ({ ...prev, [section]: data }));
     };
 
-    const handleDownloadPDF = () => {
+    const handleDownloadPDF = async () => {
         const element = document.getElementById('resume-preview-document');
+
+        // Temporarily remove the CSS transform scale so html2canvas captures the full size
+        const originalTransform = element.style.transform;
+        element.style.transform = 'none';
+
         const opt = {
             margin: 0,
             filename: `${resumeData.personal.firstName || 'Resume'}_${resumeData.personal.lastName || ''}.pdf`,
             image: { type: 'jpeg', quality: 0.98 },
-            html2canvas: { scale: 2, useCORS: true },
+            html2canvas: {
+                scale: 2,
+                useCORS: true,
+                windowWidth: 816 // Force desktop width for the capture
+            },
             jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
         };
-        html2pdf().set(opt).from(element).save();
+
+        await html2pdf().set(opt).from(element).save();
+
+        // Restore the scale for the UI preview
+        element.style.transform = originalTransform;
     };
 
     const handleNext = () => {
