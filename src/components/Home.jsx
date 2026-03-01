@@ -48,7 +48,7 @@ export default function Home({ onStart, theme, toggleTheme }) {
                     animation: 'pulseGlow 6s ease-in-out infinite alternate-reverse'
                 }} />
 
-                <div style={{
+                <div className="home-hero-grid" style={{
                     maxWidth: '1200px',
                     width: '100%',
                     display: 'grid',
@@ -59,7 +59,7 @@ export default function Home({ onStart, theme, toggleTheme }) {
                 }}>
 
                     {/* Left Column: Copy & Actions */}
-                    <div className="animate-fade-in">
+                    <div className="animate-fade-in home-hero-text">
                         <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(0, 240, 255, 0.1)', padding: '0.5rem 1rem', borderRadius: 'full', color: 'var(--primary)', fontWeight: 600, fontSize: '0.9rem', marginBottom: '1.5rem', border: '1px solid rgba(0, 240, 255, 0.2)' }}>
                             <Sparkles size={16} />
                             AI-Powered Resume Builder
@@ -79,7 +79,7 @@ export default function Home({ onStart, theme, toggleTheme }) {
                             Stand out from the crowd with ATS-friendly templates, AI-enhanced summaries, and intelligent skill suggestions. All in a stunning, easy-to-use interface.
                         </p>
 
-                        <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+                        <div className="home-hero-actions" style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
                             <button
                                 onClick={onStart}
                                 className="btn btn-primary"
@@ -192,7 +192,7 @@ export default function Home({ onStart, theme, toggleTheme }) {
                 display: 'flex',
                 justifyContent: 'flex-end'
             }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}>
+                <div className="home-footer-content" style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem', alignItems: 'flex-end', textAlign: 'right' }}>
                         <h3 style={{ fontSize: '1.4rem', fontWeight: 600, margin: 0, color: 'var(--text-primary)' }}>Contact</h3>
                         <a href="mailto:rgarun111@gmail.com" style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '1rem', transition: 'color 0.2s' }}>
