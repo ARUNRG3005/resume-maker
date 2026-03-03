@@ -23,14 +23,22 @@ export const handler = async (event, context) => {
 
         // Standardize prompt generation based on action
         if (action === "generateSummary") {
-            const { jobTitle, experience, skills } = payload;
+            const { jobTitle, experience, skills, categoryFocus } = payload;
+
+            // Core instructions
             prompt = `
               Act as an expert resume writer. 
               Write a professional summary for a ${jobTitle || 'general professional'}.
               They have experience in: ${experience ? experience.map(e => e.title).join(', ') : 'various roles'}.
-              Key skills include: ${skills ? skills.join(', ') : 'general professional skills'}.
-              
-              Keep it to 3-4 impactful sentences. Do not use generic buzzwords. Highlight achievements and value.
+              Key skills include: ${skills ? skills.join(', ') : 'general professional skills'}.`;
+
+            // Apply specific structural tuning per category rules
+            if (categoryFocus) {
+                prompt += `\n\nCRITICAL FOCUS: You are writing specifically for the ${categoryFocus} sector. Adjust language tone, priority focus, and keywords to fit standard ${categoryFocus} industry expectations perfectly.`;
+            }
+
+            prompt += `
+              Keep it to 3-4 impactful sentences. Do not use generic buzzwords. Highlight specific achievements and value.
               Return ONLY the summary text, no conversational filler or markdown.
             `;
         } else if (action === "enhanceDescription") {
