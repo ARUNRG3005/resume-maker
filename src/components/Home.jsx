@@ -3,7 +3,7 @@ import amLogo from '../assets/am_logo.jpg';
 import { Sparkles, FileText, ArrowRight, Zap, Palette, CheckCircle } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
 
-export default function Home({ onStart, theme, toggleTheme }) {
+export default function Home({ onStart, onLogin, onSignup, theme, toggleTheme }) {
     return (
         <div style={{
             minHeight: '100vh',
@@ -12,7 +12,35 @@ export default function Home({ onStart, theme, toggleTheme }) {
             position: 'relative',
             overflowX: 'hidden'
         }}>
-            <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
+            {/* Header Nav */}
+            <div style={{
+                position: 'absolute',
+                top: '1.5rem',
+                right: '2rem',
+                zIndex: 50,
+                display: 'flex',
+                gap: '1rem',
+                alignItems: 'center'
+            }}>
+                <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
+                <button
+                    onClick={onLogin}
+                    className="btn"
+                    style={{ padding: '0.5rem 1.25rem', background: 'transparent', border: '1px solid var(--border)', color: 'var(--text-primary)', borderRadius: '8px', fontWeight: 500, cursor: 'pointer', transition: 'all 0.2s ease' }}
+                    onMouseOver={(e) => e.target.style.borderColor = 'var(--primary)'}
+                    onMouseOut={(e) => e.target.style.borderColor = 'var(--border)'}
+                >
+                    Login
+                </button>
+                <button
+                    onClick={onSignup}
+                    className="btn btn-primary"
+                    style={{ padding: '0.5rem 1.25rem', borderRadius: '8px', fontWeight: 500, border: 'none', cursor: 'pointer' }}
+                >
+                    Sign Up
+                </button>
+            </div>
+
             {/* Hero Section */}
             <div style={{
                 position: 'relative',
