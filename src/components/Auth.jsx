@@ -10,14 +10,20 @@ export default function Auth({ initialMode = 'login', onBackHome, onAuthSuccess,
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Simulate authentication
+
+        // Simulate authentication returning a mock user profile
+        let userData;
         if (mode === 'login') {
             console.log("Logging in with", email, password);
+            // Since we only have an email in login form, derive a display name from it
+            userData = { name: email.split('@')[0], email };
         } else {
             console.log("Signing up with", name, email, password);
+            userData = { name, email };
         }
-        // Redirect to builder/home after successful auth
-        onAuthSuccess();
+
+        // Redirect to builder/home after successful auth with our simulated user dataload
+        onAuthSuccess(userData);
     };
 
     const toggleMode = () => {

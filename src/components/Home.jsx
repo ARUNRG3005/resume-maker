@@ -3,7 +3,7 @@ import amLogo from '../assets/am_logo.jpg';
 import { Sparkles, FileText, ArrowRight, Zap, Palette, CheckCircle } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
 
-export default function Home({ onStart, onLogin, onSignup, theme, toggleTheme }) {
+export default function Home({ user, onLogout, onStart, onLogin, onSignup, theme, toggleTheme }) {
     return (
         <div style={{
             minHeight: '100vh',
@@ -22,23 +22,43 @@ export default function Home({ onStart, onLogin, onSignup, theme, toggleTheme })
                 gap: '1rem',
                 alignItems: 'center'
             }}>
-                <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
-                <button
-                    onClick={onLogin}
-                    className="btn"
-                    style={{ padding: '0.5rem 1.25rem', background: 'transparent', border: '1px solid var(--border)', color: 'var(--text-primary)', borderRadius: '8px', fontWeight: 500, cursor: 'pointer', transition: 'all 0.2s ease' }}
-                    onMouseOver={(e) => e.target.style.borderColor = 'var(--primary)'}
-                    onMouseOut={(e) => e.target.style.borderColor = 'var(--border)'}
-                >
-                    Login
-                </button>
-                <button
-                    onClick={onSignup}
-                    className="btn btn-primary"
-                    style={{ padding: '0.5rem 1.25rem', borderRadius: '8px', fontWeight: 500, border: 'none', cursor: 'pointer' }}
-                >
-                    Sign Up
-                </button>
+                <ThemeToggle theme={theme} toggleTheme={toggleTheme} inline={true} />
+
+                {user ? (
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginLeft: '0.5rem' }}>
+                        <span style={{ fontWeight: 600, color: 'var(--text-primary)', background: 'rgba(255, 255, 255, 0.05)', padding: '0.4rem 1rem', borderRadius: '20px', border: '1px solid var(--border)' }}>
+                            Hi, {user.name} 👋
+                        </span>
+                        <button
+                            onClick={onLogout}
+                            className="btn"
+                            style={{ padding: '0.4rem 1rem', background: 'transparent', border: '1px solid var(--border)', color: 'var(--text-secondary)', borderRadius: '8px', cursor: 'pointer', transition: 'all 0.2s ease' }}
+                            onMouseOver={(e) => e.target.style.color = 'var(--text-primary)'}
+                            onMouseOut={(e) => e.target.style.color = 'var(--text-secondary)'}
+                        >
+                            Log Out
+                        </button>
+                    </div>
+                ) : (
+                    <>
+                        <button
+                            onClick={onLogin}
+                            className="btn"
+                            style={{ padding: '0.5rem 1.25rem', background: 'transparent', border: '1px solid var(--border)', color: 'var(--text-primary)', borderRadius: '8px', fontWeight: 500, cursor: 'pointer', transition: 'all 0.2s ease' }}
+                            onMouseOver={(e) => e.target.style.borderColor = 'var(--primary)'}
+                            onMouseOut={(e) => e.target.style.borderColor = 'var(--border)'}
+                        >
+                            Login
+                        </button>
+                        <button
+                            onClick={onSignup}
+                            className="btn btn-primary"
+                            style={{ padding: '0.5rem 1.25rem', borderRadius: '8px', fontWeight: 500, border: 'none', cursor: 'pointer' }}
+                        >
+                            Sign Up
+                        </button>
+                    </>
+                )}
             </div>
 
             {/* Hero Section */}
