@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import html2pdf from 'html2pdf.js';
 import { ArrowLeft, ArrowRight, CheckCircle, Download } from 'lucide-react';
+import { resumeCategories } from '../data/categories';
 
 import PersonalDetails from './forms/PersonalDetails';
 import Education from './forms/Education';
@@ -53,7 +54,8 @@ const steps = [
 
 export default function Builder({ onBackHome, theme, toggleTheme }) {
     const [currentStepIndex, setCurrentStepIndex] = useState(0);
-    const [activeTemplate, setActiveTemplate] = useState('creative');
+    const [activeTemplate, setActiveTemplate] = useState('tech');
+    const [activeCategory, setActiveCategory] = useState('IT');
 
     const [resumeData, setResumeData] = useState({
         personal: {
@@ -179,20 +181,37 @@ export default function Builder({ onBackHome, theme, toggleTheme }) {
                 ) : (
                     // PREVIEW MODE (Step 7)
                     <div className="preview-container animate-fade-in">
-                        <div className="preview-toolbar glass-panel" style={{ flexWrap: 'wrap', gap: '1rem', justifyContent: 'center' }}>
+                        <div className="preview-toolbar glass-panel" style={{ flexDirection: 'column', gap: '1.5rem', justifyContent: 'center', alignItems: 'center' }}>
+
+                            {/* CATEGORY NAV */}
+                            <div className="category-tabs" style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', justifyContent: 'center', borderBottom: '1px solid var(--border)', paddingBottom: '1rem', width: '100%' }}>
+                                {Object.keys(resumeCategories).map(cat => (
+                                    <button
+                                        key={cat}
+                                        onClick={() => setActiveCategory(cat)}
+                                        className={`btn ${activeCategory === cat ? 'btn-primary' : 'btn-outline'}`}
+                                        style={{ padding: '0.4rem 1rem', fontSize: '0.9rem', borderRadius: '20px' }}
+                                    >
+                                        {cat}
+                                    </button>
+                                ))}
+                            </div>
+
+                            {/* FILTERED TEMPLATES */}
                             <div className="template-selector" style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', justifyContent: 'center', width: '100%' }}>
-                                {TEMPLATES.map(tmpl => (
+                                {TEMPLATES.filter(tmpl => resumeCategories[activeCategory]?.includes(tmpl.name)).map(tmpl => (
                                     <button
                                         key={tmpl.id}
                                         className={`btn ${activeTemplate === tmpl.id ? 'btn-primary' : 'btn-outline'}`}
                                         onClick={() => setActiveTemplate(tmpl.id)}
-                                        style={{ padding: '0.5rem 1rem' }}
+                                        style={{ padding: '0.5rem 1rem', background: activeTemplate === tmpl.id ? '#00f0ff' : 'transparent', color: activeTemplate === tmpl.id ? 'black' : 'inherit' }}
                                     >
                                         {tmpl.name}
                                     </button>
                                 ))}
                             </div>
-                            <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', width: '100%', marginTop: '0.5rem', borderTop: '1px solid var(--border)', paddingTop: '1rem' }}>
+
+                            <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', width: '100%', marginTop: '0.5rem' }}>
                                 <button className="btn btn-outline" onClick={handlePrev}><ArrowLeft size={16} /> Data Entry</button>
                                 <button className="btn btn-primary" onClick={handleDownloadPDF}><Download size={16} /> Download PDF</button>
                             </div>
