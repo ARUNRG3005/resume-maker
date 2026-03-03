@@ -64,3 +64,24 @@ export const suggestSkills = async (jobTitle, existingSkills) => {
         throw error;
     }
 };
+
+export const analyzeATSScore = async (missingKeywords) => {
+    try {
+        const response = await fetch(API_ENDPOINT, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                action: 'analyzeATS',
+                payload: { missingKeywords }
+            })
+        });
+
+        if (!response.ok) throw new Error("Failed to analyze ATS from backend");
+
+        const data = await response.json();
+        return data.result;
+    } catch (error) {
+        console.error("AI ATS Analysis Error:", error);
+        throw error;
+    }
+};

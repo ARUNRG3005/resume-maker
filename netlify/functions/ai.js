@@ -63,6 +63,14 @@ export const handler = async (event, context) => {
               
               Return ONLY a comma-separated list of the suggested skills. No conversational filler or markdown.
             `;
+        } else if (action === "analyzeATS") {
+            const { missingKeywords } = payload;
+            prompt = `
+              Act as an expert resume writer and technical recruiter. A user is missing the following critical keywords from their resume based on a job description: ${missingKeywords.join(', ')}.
+              
+              Provide 3 short, highly actionable bullet points on how to seamlessly incorporate these keywords into their work experience or summary section without keyword stuffing.
+              Keep it extremely concise and direct.
+            `;
         } else {
             return { statusCode: 400, body: JSON.stringify({ error: "Invalid action type." }) };
         }

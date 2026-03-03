@@ -25,6 +25,8 @@ import TemplateGrid from './templates/TemplateGrid';
 import TemplateSidebar from './templates/TemplateSidebar';
 
 import ThemeToggle from './ThemeToggle';
+import ATSScore from './ATSScore';
+import { analyzeATSScore } from '../services/ai';
 
 const TEMPLATES = [
     { id: 'minimalist', name: 'Minimalist', component: TemplateMinimalist, color: '#f3f4f6' },
@@ -56,6 +58,7 @@ export default function Builder({ onBackHome, theme, toggleTheme }) {
     const [currentStepIndex, setCurrentStepIndex] = useState(0);
     const [activeTemplate, setActiveTemplate] = useState('tech');
     const [activeCategory, setActiveCategory] = useState('IT');
+    const [isAnalyzingAI, setIsAnalyzingAI] = useState(false);
 
     const [resumeData, setResumeData] = useState({
         personal: {
@@ -99,6 +102,18 @@ export default function Builder({ onBackHome, theme, toggleTheme }) {
 
     const handleNext = () => {
         if (currentStepIndex < steps.length - 1) setCurrentStepIndex(currentStepIndex + 1);
+    };
+
+    const handleFetchAIAtsSuggestions = async (missingKeywords) => {
+        setIsAnalyzingAI(true);
+        try {
+            const suggestions = await analyzeATSScore(missingKeywords);
+            alert("AI Suggestions:\n\n" + suggestions);
+        } catch (error) {
+            alert('Failed to fetch AI suggestions. Please try again.');
+        } finally {
+            setIsAnalyzingAI(false);
+        }
     };
 
     const handlePrev = () => {
@@ -215,6 +230,15 @@ export default function Builder({ onBackHome, theme, toggleTheme }) {
                                 <button className="btn btn-outline" onClick={handlePrev}><ArrowLeft size={16} /> Data Entry</button>
                                 <button className="btn btn-primary" onClick={handleDownloadPDF}><Download size={16} /> Download PDF</button>
                             </div>
+                        </div>
+
+                        {/* ATS MATCHING WIDGET */}
+                        <div style={{ width: '100%', maxWidth: '816px', margin: '0 auto 1.5rem auto' }}>
+                            <ATSScore
+                                resumeData={resumeData}
+                                onFetchAISuggestions={handleFetchAIAtsSuggestions}
+                                isAnalyzingAI={isAnalyzingAI}
+                            />
                         </div>
 
                         <div className="resume-preview-wrapper" style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
