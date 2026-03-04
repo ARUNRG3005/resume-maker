@@ -12,7 +12,14 @@ export const generateSummary = async (jobTitle, experience, skills) => {
             })
         });
 
-        if (!response.ok) throw new Error("Failed to generate summary from backend");
+        if (!response.ok) {
+            let errorDetails = "Unknown Error";
+            try {
+                const errData = await response.json();
+                if (errData.details) errorDetails = errData.details;
+            } catch (e) { }
+            throw new Error(errorDetails);
+        }
 
         const data = await response.json();
         return data.result;
@@ -34,7 +41,14 @@ export const enhanceDescription = async (text) => {
             })
         });
 
-        if (!response.ok) throw new Error("Failed to enhance description from backend");
+        if (!response.ok) {
+            let errorDetails = "Unknown Error";
+            try {
+                const errData = await response.json();
+                if (errData.details) errorDetails = errData.details;
+            } catch (e) { }
+            throw new Error(errorDetails);
+        }
 
         const data = await response.json();
         return data.result;
@@ -55,7 +69,14 @@ export const suggestSkills = async (jobTitle, existingSkills) => {
             })
         });
 
-        if (!response.ok) throw new Error("Failed to suggest skills from backend");
+        if (!response.ok) {
+            let errorDetails = "Unknown Error";
+            try {
+                const errData = await response.json();
+                if (errData.details) errorDetails = errData.details;
+            } catch (e) { }
+            throw new Error(errorDetails);
+        }
 
         const data = await response.json();
         return data.result;
@@ -76,7 +97,14 @@ export const analyzeATSScore = async (missingKeywords) => {
             })
         });
 
-        if (!response.ok) throw new Error("Failed to analyze ATS from backend");
+        if (!response.ok) {
+            let errorDetails = "Unknown Error";
+            try {
+                const errData = await response.json();
+                if (errData.details) errorDetails = errData.details;
+            } catch (e) { }
+            throw new Error(errorDetails);
+        }
 
         const data = await response.json();
         return data.result;
