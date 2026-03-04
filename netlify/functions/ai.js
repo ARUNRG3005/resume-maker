@@ -95,7 +95,11 @@ export const handler = async (event, context) => {
         console.error("AI Serverless Function Error:", error);
         return {
             statusCode: 500,
-            body: JSON.stringify({ error: "Internal Server Error during AI generation." })
+            body: JSON.stringify({
+                error: "Internal Server Error during AI generation.",
+                details: error ? error.message : "Unknown Error",
+                stack: error ? error.stack : null
+            })
         };
     }
 };
