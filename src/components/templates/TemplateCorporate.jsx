@@ -46,7 +46,7 @@ export default function TemplateCorporate({ data }) {
                     </h2>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                         {experience.map(exp => (
-                            <div key={exp.id}>
+                            <div key={exp.id} className="resume-section">
                                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
                                     <h3 style={{ fontSize: '1.1rem', fontWeight: 700, margin: 0 }}>{exp.company}</h3>
                                     <span style={{ fontSize: '1rem', fontWeight: 600 }}>
@@ -74,7 +74,7 @@ export default function TemplateCorporate({ data }) {
                     </h2>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                         {projects.map(proj => (
-                            <div key={proj.id}>
+                            <div key={proj.id} className="resume-section">
                                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '0.25rem' }}>
                                     <div style={{ display: 'flex', alignItems: 'baseline', gap: '1rem' }}>
                                         <h3 style={{ fontSize: '1.1rem', fontWeight: 700, margin: 0 }}>{proj.name}</h3>
@@ -101,7 +101,7 @@ export default function TemplateCorporate({ data }) {
                     </h2>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                         {education.map(edu => (
-                            <div key={edu.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+                            <div key={edu.id} className="resume-section" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
                                 <div>
                                     <h3 style={{ fontSize: '1.1rem', fontWeight: 700, margin: '0 0 0.25rem 0' }}>{edu.school}</h3>
                                     <div style={{ fontSize: '1.05rem', color: '#4b5563', fontStyle: 'italic' }}>{edu.degree}, {edu.fieldOfStudy}</div>
@@ -138,7 +138,7 @@ export default function TemplateCorporate({ data }) {
                         </h2>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
                             {certifications.map(cert => (
-                                <div key={cert.id} style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                <div key={cert.id} className="resume-section" style={{ display: 'flex', justifyContent: 'space-between' }}>
                                     <div style={{ fontSize: '1rem', fontWeight: 700, color: '#374151' }}>{cert.name}</div>
                                     <div style={{ fontSize: '0.95rem', color: '#6b7280' }}>{cert.issuer}</div>
                                 </div>

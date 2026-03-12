@@ -39,7 +39,7 @@ export default function TemplateCompact({ data }) {
                     <h3 style={{ fontSize: '12px', fontWeight: 700, borderBottom: '1px solid #000', paddingBottom: '2px', marginBottom: '6px', textTransform: 'uppercase' }}>Experience</h3>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                         {experience.map(exp => (
-                            <div key={exp.id}>
+                            <div key={exp.id} className="resume-section">
                                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
                                     <div>
                                         <span style={{ fontWeight: 700 }}>{exp.company}</span>
@@ -65,7 +65,7 @@ export default function TemplateCompact({ data }) {
                     <h3 style={{ fontSize: '12px', fontWeight: 700, borderBottom: '1px solid #000', paddingBottom: '2px', marginBottom: '6px', textTransform: 'uppercase' }}>Projects</h3>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
                         {projects.map(proj => (
-                            <div key={proj.id}>
+                            <div key={proj.id} className="resume-section">
                                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
                                     <div>
                                         <span style={{ fontWeight: 700 }}>{proj.name}</span>
@@ -90,7 +90,7 @@ export default function TemplateCompact({ data }) {
                     <h3 style={{ fontSize: '12px', fontWeight: 700, borderBottom: '1px solid #000', paddingBottom: '2px', marginBottom: '6px', textTransform: 'uppercase' }}>Education</h3>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
                         {education.map(edu => (
-                            <div key={edu.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+                            <div key={edu.id} className="resume-section" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
                                 <div>
                                     <span style={{ fontWeight: 700 }}>{edu.school}</span>
                                     <span> — {edu.degree}, {edu.fieldOfStudy}</span>
@@ -119,7 +119,7 @@ export default function TemplateCompact({ data }) {
                         <h3 style={{ fontSize: '12px', fontWeight: 700, borderBottom: '1px solid #000', paddingBottom: '2px', marginBottom: '6px', textTransform: 'uppercase' }}>Certifications</h3>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
                             {certifications.map(cert => (
-                                <div key={cert.id} style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                <div key={cert.id} className="resume-section" style={{ display: 'flex', justifyContent: 'space-between' }}>
                                     <span style={{ fontWeight: 600 }}>{cert.name}</span>
                                     <span style={{ fontSize: '10px' }}>{cert.issuer}</span>
                                 </div>

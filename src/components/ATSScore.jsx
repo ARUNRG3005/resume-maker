@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Target, CheckCircle, AlertTriangle, ChevronDown, ChevronUp, Sparkles, Loader2 } from 'lucide-react';
+import { Target, CheckCircle, AlertTriangle, ChevronDown, ChevronUp } from 'lucide-react';
 import { calculateATSCompatibility } from '../utils/atsScoring';
+import AIHelper from './AIHelper';
 
-export default function ATSScore({ resumeData, onFetchAISuggestions, isAnalyzingAI }) {
+export default function ATSScore({ resumeData, onUpdateSummary }) {
     const [isExpanded, setIsExpanded] = useState(false);
     const [jobDescription, setJobDescription] = useState('');
     const [scoreData, setScoreData] = useState(null);
@@ -175,18 +176,17 @@ export default function ATSScore({ resumeData, onFetchAISuggestions, isAnalyzing
                                         <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', margin: '0 0 1rem 0', lineHeight: 1.5 }}>
                                             Need help integrating these seamlessly into your experience section without keyword staffing?
                                         </p>
-                                        <button
-                                            onClick={() => onFetchAISuggestions(scoreData.missingKeywords)}
+                                        <AIHelper
+                                            action="ats"
+                                            payload={{ missingKeywords: scoreData.missingKeywords, currentSummary: resumeData.personal.summary }}
+                                            onResult={(newSummary) => onUpdateSummary(newSummary)}
                                             className="btn"
-                                            disabled={isAnalyzingAI}
                                             style={{
                                                 display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
                                                 width: '100%', padding: '0.75rem', background: 'var(--primary)', color: '#000', fontWeight: 600, border: 'none', borderRadius: '8px'
                                             }}
-                                        >
-                                            {isAnalyzingAI ? <Loader2 size={18} className="animate-spin" /> : <Sparkles size={18} />}
-                                            {isAnalyzingAI ? "Generating Advice..." : "Get AI Improvement Suggestions"}
-                                        </button>
+                                            customLabel="Get AI Improvement Suggestions"
+                                        />
                                     </div>
                                 </div>
                             )}

@@ -59,7 +59,7 @@ export default function TemplateCreative({ data }) {
                             </h2>
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
                                 {experience.map(exp => (
-                                    <div key={exp.id} style={{ position: 'relative' }}>
+                                    <div key={exp.id} className="resume-section" style={{ position: 'relative' }}>
                                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.5rem' }}>
                                             <div>
                                                 <h3 style={{ fontSize: '1.15rem', fontWeight: 700, margin: 0, color: '#111827' }}>{exp.title}</h3>
@@ -87,7 +87,7 @@ export default function TemplateCreative({ data }) {
                             </h2>
                             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.5rem' }}>
                                 {projects.map(proj => (
-                                    <div key={proj.id} style={{ border: '1px solid #e5e7eb', padding: '1.25rem', borderRadius: '12px', background: '#f9fafb' }}>
+                                    <div key={proj.id} className="resume-section" style={{ border: '1px solid #e5e7eb', padding: '1.25rem', borderRadius: '12px', background: '#f9fafb' }}>
                                         <h3 style={{ fontSize: '1.1rem', fontWeight: 700, margin: 0, color: '#111827', marginBottom: '0.25rem' }}>{proj.name}</h3>
                                         <div style={{ fontSize: '0.85rem', color: '#6b7280', marginBottom: '0.75rem' }}>
                                             {formatDate(proj.startDate)} - {formatDate(proj.endDate)}
@@ -112,7 +112,7 @@ export default function TemplateCreative({ data }) {
                                 Education
                             </h2>
                             {education.map(edu => (
-                                <div key={edu.id} style={{ marginBottom: '1.25rem' }}>
+                                <div key={edu.id} className="resume-section" style={{ marginBottom: '1.25rem' }}>
                                     <h4 style={{ fontSize: '1.05rem', fontWeight: 700, color: '#111827', margin: 0 }}>{edu.degree}</h4>
                                     <div style={{ fontSize: '0.95rem', color: '#4f46e5', fontWeight: 500 }}>{edu.fieldOfStudy}</div>
                                     <div style={{ fontSize: '0.9rem', color: '#6b7280', marginTop: '0.25rem' }}>{edu.school}</div>
@@ -132,7 +132,7 @@ export default function TemplateCreative({ data }) {
                             </h2>
                             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
                                 {skills.map((skill, index) => (
-                                    <span key={index} style={{
+                                    <span key={index} className="resume-section" style={{
                                         background: 'white',
                                         border: '1px solid #d1d5db',
                                         padding: '0.35rem 0.75rem',
@@ -157,7 +157,7 @@ export default function TemplateCreative({ data }) {
                             </h2>
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                                 {certifications.map(cert => (
-                                    <div key={cert.id} style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
+                                    <div key={cert.id} className="resume-section" style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
                                         <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: 'rgba(79, 70, 229, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#4f46e5', flexShrink: 0 }}>
                                             ★
                                         </div>

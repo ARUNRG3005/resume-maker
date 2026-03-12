@@ -123,18 +123,48 @@ select {
 
 .form-input {
   width: 100%;
-  padding: 0.75rem 1rem;
-  border: 1px solid var(--border);
+  padding: 0.8rem 1.25rem;
+  border: 1px solid var(--border-glass);
   border-radius: var(--radius-md);
-  background: var(--surface);
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   color: var(--text-primary);
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+[data-theme='light'] .form-input {
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+.form-input::placeholder {
+  color: var(--text-muted);
+  opacity: 0.7;
+}
+
+.form-input:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+[data-theme='light'] .form-input:hover {
+  background: rgba(255, 255, 255, 0.6);
+  border-color: rgba(0, 0, 0, 0.2);
 }
 
 .form-input:focus {
   outline: none;
+  background: rgba(255, 255, 255, 0.08);
   border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+  box-shadow: 0 0 0 3px var(--primary-light), inset 0 2px 4px rgba(0, 0, 0, 0.05);
+  transform: translateY(-1px);
+}
+
+[data-theme='light'] .form-input:focus {
+  background: rgba(255, 255, 255, 0.8);
 }
 
 .btn {
@@ -142,11 +172,15 @@ select {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0.75rem 1.5rem;
-  font-size: 0.875rem;
+  padding: 0.8rem 1.75rem;
+  font-size: 0.9rem;
   font-weight: 600;
   border-radius: var(--radius-md);
   cursor: pointer;
+  letter-spacing: 0.3px;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .btn-primary {
@@ -262,34 +296,48 @@ select {
   width: 816px !important;
   /* Strictly fixed to 8.5in (96dpi) */
   min-height: 1056px;
-  /* Exactly 11in */
+  /* Exactly 11in, expands beyond for multi-page */
+  height: auto;
   flex-shrink: 0;
   background: white;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
   box-sizing: border-box;
 }
 
-/* Glassmorphism */
+/* Page break rules for html2pdf multi-page rendering */
+.resume-section {
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+
+/* Glassmorphism Panels */
 .glass-panel {
   background: var(--surface-glass);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border: 1px solid var(--border-glass);
   box-shadow: var(--shadow-md);
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .glass-panel:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-lg);
-  border-color: var(--border);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg), 0 10px 30px -10px rgba(0, 240, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme='light'] .glass-panel:hover {
+  box-shadow: var(--shadow-lg), 0 10px 30px -10px rgba(0, 102, 204, 0.15);
+  border-color: rgba(0, 0, 0, 0.15);
+  background: rgba(255, 255, 255, 0.8);
 }
 
 /* Animations */
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(15px);
   }
 
   to {
@@ -299,8 +347,15 @@ select {
 }
 
 .animate-fade-in {
-  animation: fadeIn 0.4s ease-out forwards;
+  animation: fadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
+
+/* Stagger Delays for Form Elements */
+.delay-100 { animation-delay: 100ms; opacity: 0; }
+.delay-200 { animation-delay: 200ms; opacity: 0; }
+.delay-300 { animation-delay: 300ms; opacity: 0; }
+.delay-400 { animation-delay: 400ms; opacity: 0; }
+.delay-500 { animation-delay: 500ms; opacity: 0; }
 
 @keyframes float3d {
   0% {
@@ -310,7 +365,7 @@ select {
 
   50% {
     transform: perspective(1000px) translateY(-18px) rotateX(-1deg) rotateY(2deg) scale(1.03);
-    filter: drop-shadow(0 35px 45px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 35px rgba(0, 240, 255, 0.5));
+    filter: drop-shadow(0 35px 45px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 35px rgba(0, 240, 255, 0.6));
   }
 
   100% {

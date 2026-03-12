@@ -1,9 +1,13 @@
+import React, { useState } from 'react';
 import floatingResumeVideo from '../assets/floating_resume.mp4';
 import amLogo from '../assets/am_logo.jpg';
 import { Sparkles, FileText, ArrowRight, Zap, Palette, CheckCircle } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
+import StartModal from './StartModal';
 
 export default function Home({ user, onLogout, onStart, onLogin, onSignup, theme, toggleTheme }) {
+    const [showModal, setShowModal] = useState(false);
+
     return (
         <div style={{
             minHeight: '100vh',
@@ -129,7 +133,7 @@ export default function Home({ user, onLogout, onStart, onLogin, onSignup, theme
 
                         <div className="home-hero-actions" style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
                             <button
-                                onClick={onStart}
+                                onClick={() => setShowModal(true)}
                                 className="btn btn-primary"
                                 style={{ fontSize: '1.1rem', padding: '1rem 2rem', gap: '0.75rem' }}
                             >
@@ -221,7 +225,7 @@ export default function Home({ user, onLogout, onStart, onLogin, onSignup, theme
 
                     <div style={{ textAlign: 'center', marginTop: '4rem' }}>
                         <button
-                            onClick={onStart}
+                            onClick={() => setShowModal(true)}
                             className="btn btn-primary"
                             style={{ fontSize: '1.1rem', padding: '1rem 3rem' }}
                         >
@@ -263,6 +267,20 @@ export default function Home({ user, onLogout, onStart, onLogin, onSignup, theme
                     </div>
                 </div>
             </footer>
+
+            {showModal && (
+                <StartModal 
+                    onClose={() => setShowModal(false)}
+                    onStartScratch={() => {
+                        setShowModal(false);
+                        onStart(null);
+                    }}
+                    onStartWithData={(data) => {
+                        setShowModal(false);
+                        onStart(data);
+                    }}
+                />
+            )}
         </div>
     );
 }

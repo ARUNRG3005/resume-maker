@@ -50,7 +50,7 @@ export default function TemplateElegant({ data }) {
                             <h3 style={{ fontSize: '1.2rem', textTransform: 'uppercase', letterSpacing: '2px', borderBottom: '1px solid #cbd5e1', paddingBottom: '0.5rem', marginBottom: '1rem', color: '#0f172a' }}>Expertise</h3>
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', fontFamily: "'Inter', sans-serif", fontSize: '0.95rem' }}>
                                 {skills.map((skill, index) => (
-                                    <div key={index} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                                    <div key={index} className="resume-section" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                                         <span style={{ color: '#64748b' }}>•</span> {skill}
                                     </div>
                                 ))}
@@ -64,7 +64,7 @@ export default function TemplateElegant({ data }) {
                             <h3 style={{ fontSize: '1.2rem', textTransform: 'uppercase', letterSpacing: '2px', borderBottom: '1px solid #cbd5e1', paddingBottom: '0.5rem', marginBottom: '1rem', color: '#0f172a' }}>Certifications</h3>
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', fontFamily: "'Inter', sans-serif" }}>
                                 {certifications.map(cert => (
-                                    <div key={cert.id}>
+                                    <div key={cert.id} className="resume-section">
                                         <div style={{ fontWeight: 600, color: '#334155', fontSize: '0.95rem' }}>{cert.name}</div>
                                         <div style={{ color: '#64748b', fontSize: '0.85rem' }}>{cert.issuer}</div>
                                     </div>
@@ -82,7 +82,7 @@ export default function TemplateElegant({ data }) {
                             <h3 style={{ fontSize: '1.2rem', textTransform: 'uppercase', letterSpacing: '2px', borderBottom: '1px solid #cbd5e1', paddingBottom: '0.5rem', marginBottom: '1.5rem', color: '#0f172a', fontFamily: "'Georgia', serif" }}>Professional Experience</h3>
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
                                 {experience.map(exp => (
-                                    <div key={exp.id}>
+                                    <div key={exp.id} className="resume-section">
                                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '0.25rem' }}>
                                             <h4 style={{ fontSize: '1.1rem', fontWeight: 700, margin: 0, color: '#1e293b' }}>{exp.title}</h4>
                                             <span style={{ fontSize: '0.85rem', color: '#64748b', fontWeight: 500 }}>
@@ -105,7 +105,7 @@ export default function TemplateElegant({ data }) {
                             <h3 style={{ fontSize: '1.2rem', textTransform: 'uppercase', letterSpacing: '2px', borderBottom: '1px solid #cbd5e1', paddingBottom: '0.5rem', marginBottom: '1.5rem', color: '#0f172a', fontFamily: "'Georgia', serif" }}>Key Projects</h3>
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                                 {projects.map(proj => (
-                                    <div key={proj.id}>
+                                    <div key={proj.id} className="resume-section">
                                         <div style={{ display: 'flex', alignItems: 'baseline', gap: '1rem', marginBottom: '0.25rem' }}>
                                             <h4 style={{ fontSize: '1.05rem', fontWeight: 700, margin: 0, color: '#1e293b' }}>{proj.name}</h4>
                                             <span style={{ fontSize: '0.85rem', color: '#64748b' }}>
@@ -128,7 +128,7 @@ export default function TemplateElegant({ data }) {
                             <h3 style={{ fontSize: '1.2rem', textTransform: 'uppercase', letterSpacing: '2px', borderBottom: '1px solid #cbd5e1', paddingBottom: '0.5rem', marginBottom: '1.5rem', color: '#0f172a', fontFamily: "'Georgia', serif" }}>Education</h3>
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                                 {education.map(edu => (
-                                    <div key={edu.id}>
+                                    <div key={edu.id} className="resume-section">
                                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
                                             <h4 style={{ fontSize: '1.05rem', fontWeight: 700, color: '#1e293b', margin: 0 }}>{edu.degree} in {edu.fieldOfStudy}</h4>
                                             <span style={{ fontSize: '0.85rem', color: '#64748b' }}>{formatDate(edu.startDate)} - {formatDate(edu.endDate)}</span>

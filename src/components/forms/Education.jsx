@@ -44,8 +44,8 @@ export default function Education({ data, onChange }) {
                         </button>
                     </div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-                        <div className="form-group">
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }} className="animate-fade-in delay-100">
+                        <div className="form-group" style={{ marginBottom: 0 }}>
                             <label className="form-label">School / University</label>
                             <input
                                 type="text"
@@ -55,7 +55,7 @@ export default function Education({ data, onChange }) {
                                 placeholder="Harvard University"
                             />
                         </div>
-                        <div className="form-group">
+                        <div className="form-group" style={{ marginBottom: 0 }}>
                             <label className="form-label">Degree</label>
                             <input
                                 type="text"
@@ -67,7 +67,7 @@ export default function Education({ data, onChange }) {
                         </div>
                     </div>
 
-                    <div className="form-group">
+                    <div className="form-group animate-fade-in delay-200" style={{ marginTop: '1.25rem' }}>
                         <label className="form-label">Field of Study</label>
                         <input
                             type="text"
@@ -78,8 +78,8 @@ export default function Education({ data, onChange }) {
                         />
                     </div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-                        <div className="form-group">
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }} className="animate-fade-in delay-300">
+                        <div className="form-group" style={{ marginBottom: 0 }}>
                             <label className="form-label">Start Date</label>
                             <input
                                 type="month"
@@ -88,7 +88,7 @@ export default function Education({ data, onChange }) {
                                 onChange={(e) => updateItem(item.id, 'startDate', e.target.value)}
                             />
                         </div>
-                        <div className="form-group">
+                        <div className="form-group" style={{ marginBottom: 0 }}>
                             <label className="form-label">End Date (or Expected)</label>
                             <input
                                 type="month"
@@ -99,7 +99,7 @@ export default function Education({ data, onChange }) {
                         </div>
                     </div>
 
-                    <div className="form-group" style={{ position: 'relative' }}>
+                    <div className="form-group animate-fade-in delay-400" style={{ position: 'relative', marginTop: '1.25rem' }}>
                         <label className="form-label">Description (Optional)</label>
                         <textarea
                             className="form-input"

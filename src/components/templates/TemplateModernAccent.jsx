@@ -65,7 +65,7 @@ export default function TemplateModernAccent({ data }) {
                             </h3>
                             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
                                 {skills.map((skill, index) => (
-                                    <span key={index} style={{ background: 'white', padding: '0.5rem 1rem', borderRadius: '12px', fontSize: '0.9rem', fontWeight: 600, color: '#374151', border: '1px solid #e5e7eb', boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)' }}>
+                                    <span key={index} className="resume-section" style={{ background: 'white', padding: '0.5rem 1rem', borderRadius: '12px', fontSize: '0.9rem', fontWeight: 600, color: '#374151', border: '1px solid #e5e7eb', boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)' }}>
                                         {skill}
                                     </span>
                                 ))}
@@ -82,7 +82,7 @@ export default function TemplateModernAccent({ data }) {
                             </h3>
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
                                 {education.map(edu => (
-                                    <div key={edu.id}>
+                                    <div key={edu.id} className="resume-section">
                                         <h4 style={{ fontSize: '1.05rem', fontWeight: 700, margin: '0 0 0.25rem 0', color: '#111827' }}>{edu.degree}</h4>
                                         <div style={{ fontSize: '0.95rem', color: accentColor, fontWeight: 600 }}>{edu.fieldOfStudy}</div>
                                         <div style={{ fontSize: '0.9rem', color: '#6b7280', marginTop: '0.25rem' }}>{edu.school}</div>
@@ -102,7 +102,7 @@ export default function TemplateModernAccent({ data }) {
                             </h3>
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                                 {certifications.map(cert => (
-                                    <div key={cert.id} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem' }}>
+                                    <div key={cert.id} className="resume-section" style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem' }}>
                                         <div style={{ width: '24px', height: '24px', borderRadius: '50%', background: `${accentColor}20`, color: accentColor, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, fontSize: '0.8rem', fontWeight: 800 }}>✓</div>
                                         <div>
                                             <div style={{ fontSize: '0.95rem', fontWeight: 700, color: '#111827' }}>{cert.name}</div>
@@ -125,7 +125,7 @@ export default function TemplateModernAccent({ data }) {
                             </h3>
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '2.5rem' }}>
                                 {experience.map(exp => (
-                                    <div key={exp.id} style={{ position: 'relative' }}>
+                                    <div key={exp.id} className="resume-section" style={{ position: 'relative' }}>
                                         <div style={{ position: 'absolute', left: '-16px', top: '8px', width: '8px', height: '8px', borderRadius: '50%', background: accentColor }}></div>
                                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '0.5rem' }}>
                                             <h4 style={{ fontSize: '1.25rem', fontWeight: 800, margin: 0, color: '#111827' }}>{exp.title}</h4>
@@ -153,7 +153,7 @@ export default function TemplateModernAccent({ data }) {
                             </h3>
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
                                 {projects.map(proj => (
-                                    <div key={proj.id} style={{ background: 'white', padding: '1.5rem', borderRadius: '16px', border: '1px solid #e5e7eb', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.05)' }}>
+                                    <div key={proj.id} className="resume-section" style={{ background: 'white', padding: '1.5rem', borderRadius: '16px', border: '1px solid #e5e7eb', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.05)' }}>
                                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '0.75rem' }}>
                                             <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
                                                 <h4 style={{ fontSize: '1.15rem', fontWeight: 800, margin: 0, color: '#111827' }}>{proj.name}</h4>

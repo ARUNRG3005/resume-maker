@@ -47,7 +47,7 @@ export default function TemplateSidebar({ data }) {
                             <h2 style={{ fontSize: '1.1rem', color: 'white', textTransform: 'uppercase', borderBottom: '1px solid #334155', paddingBottom: '0.5rem', marginBottom: '1rem', letterSpacing: '1px' }}>Skills</h2>
                             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
                                 {skills.map((skill, index) => (
-                                    <span key={index} style={{ background: '#1e293b', padding: '0.3rem 0.6rem', borderRadius: '4px', fontSize: '0.85rem' }}>
+                                    <span key={index} className="resume-section" style={{ background: '#1e293b', padding: '0.3rem 0.6rem', borderRadius: '4px', fontSize: '0.85rem' }}>
                                         {skill}
                                     </span>
                                 ))}
@@ -60,7 +60,7 @@ export default function TemplateSidebar({ data }) {
                             <h2 style={{ fontSize: '1.1rem', color: 'white', textTransform: 'uppercase', borderBottom: '1px solid #334155', paddingBottom: '0.5rem', marginBottom: '1rem', letterSpacing: '1px' }}>Education</h2>
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                                 {education.map(edu => (
-                                    <div key={edu.id}>
+                                    <div key={edu.id} className="resume-section">
                                         <div style={{ fontWeight: 600, color: 'white', fontSize: '0.95rem' }}>{edu.degree}</div>
                                         <div style={{ color: '#94a3b8', fontSize: '0.9rem' }}>{edu.fieldOfStudy}</div>
                                         <div style={{ color: '#64748b', fontSize: '0.85rem', marginTop: '0.25rem' }}>{edu.school}</div>
@@ -90,7 +90,7 @@ export default function TemplateSidebar({ data }) {
                         <h2 style={{ fontSize: '1.5rem', color: '#0f172a', borderBottom: '2px solid #e2e8f0', paddingBottom: '0.5rem', marginBottom: '1.5rem', textTransform: 'uppercase', fontWeight: 800 }}>Experience</h2>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
                             {experience.map(exp => (
-                                <div key={exp.id}>
+                                <div key={exp.id} className="resume-section">
                                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '0.25rem' }}>
                                         <h3 style={{ fontSize: '1.2rem', fontWeight: 700, margin: 0, color: '#0f172a' }}>{exp.title}</h3>
                                         <span style={{ fontSize: '0.95rem', fontWeight: 600, color: '#38bdf8' }}>
@@ -114,7 +114,7 @@ export default function TemplateSidebar({ data }) {
                         <h2 style={{ fontSize: '1.5rem', color: '#0f172a', borderBottom: '2px solid #e2e8f0', paddingBottom: '0.5rem', marginBottom: '1.5rem', textTransform: 'uppercase', fontWeight: 800 }}>Projects</h2>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                             {projects.map(proj => (
-                                <div key={proj.id}>
+                                <div key={proj.id} className="resume-section">
                                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.25rem' }}>
                                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                                             <h3 style={{ fontSize: '1.15rem', fontWeight: 700, margin: 0, color: '#0f172a' }}>{proj.name}</h3>
@@ -138,7 +138,7 @@ export default function TemplateSidebar({ data }) {
                         <h2 style={{ fontSize: '1.5rem', color: '#0f172a', borderBottom: '2px solid #e2e8f0', paddingBottom: '0.5rem', marginBottom: '1.5rem', textTransform: 'uppercase', fontWeight: 800 }}>Licenses & Certs</h2>
                         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
                             {certifications.map(cert => (
-                                <div key={cert.id} style={{ background: '#f8fafc', border: '1px solid #e2e8f0', padding: '1rem', borderRadius: '8px' }}>
+                                <div key={cert.id} className="resume-section" style={{ background: '#f8fafc', border: '1px solid #e2e8f0', padding: '1rem', borderRadius: '8px' }}>
                                     <h3 style={{ fontSize: '1rem', fontWeight: 700, color: '#0f172a', margin: '0 0 0.25rem 0' }}>{cert.name}</h3>
                                     <div style={{ fontSize: '0.85rem', color: '#64748b' }}>{cert.issuer}</div>
                                 </div>

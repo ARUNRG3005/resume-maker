@@ -49,7 +49,7 @@ export default function TemplateModern({ data }) {
                         <h3 style={{ fontSize: '1rem', textTransform: 'uppercase', letterSpacing: '1px', borderBottom: '1px solid #cbd5e1', paddingBottom: '0.25rem', marginBottom: '0.75rem' }}>Certifications</h3>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', fontSize: '0.9rem' }}>
                             {certifications.map(cert => (
-                                <div key={cert.id}>
+                                <div key={cert.id} className="resume-section">
                                     <strong style={{ display: 'block', color: '#2563eb' }}>{cert.name}</strong>
                                     <span style={{ color: '#475569' }}>{cert.issuer}</span>
                                 </div>
@@ -79,7 +79,7 @@ export default function TemplateModern({ data }) {
                             Experience
                         </h3>
                         {experience.map(exp => (
-                            <div key={exp.id} style={{ marginBottom: '1.25rem' }}>
+                            <div key={exp.id} className="resume-section" style={{ marginBottom: '1.25rem' }}>
                                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
                                     <h4 style={{ fontSize: '1.1rem', fontWeight: 600, margin: 0 }}>{exp.title}</h4>
                                     <span style={{ fontSize: '0.85rem', color: '#2563eb', fontWeight: 600, background: '#f1f5f9', padding: '2px 8px', borderRadius: '12px' }}>
@@ -104,7 +104,7 @@ export default function TemplateModern({ data }) {
                             Education
                         </h3>
                         {education.map(edu => (
-                            <div key={edu.id} style={{ marginBottom: '1rem' }}>
+                            <div key={edu.id} className="resume-section" style={{ marginBottom: '1rem' }}>
                                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
                                     <h4 style={{ fontSize: '1.05rem', fontWeight: 600, margin: 0 }}>{edu.school}</h4>
                                     <span style={{ fontSize: '0.85rem', color: '#64748b' }}>
@@ -129,7 +129,7 @@ export default function TemplateModern({ data }) {
                             Projects
                         </h3>
                         {projects.map(proj => (
-                            <div key={proj.id} style={{ marginBottom: '1rem' }}>
+                            <div key={proj.id} className="resume-section" style={{ marginBottom: '1rem' }}>
                                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
                                     <h4 style={{ fontSize: '1.05rem', fontWeight: 600, margin: 0 }}>{proj.name}</h4>
                                     <span style={{ fontSize: '0.85rem', color: '#64748b' }}>

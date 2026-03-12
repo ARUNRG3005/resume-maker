@@ -22,7 +22,7 @@ export default function PersonalDetails({ data, onChange }) {
         <div className="form-section">
             <h2 style={{ marginBottom: '1.5rem', fontSize: '1.25rem' }}>Personal Details</h2>
 
-            <div className="form-group">
+            <div className="form-group animate-fade-in delay-100">
                 <label className="form-label">Profile Picture (Optional)</label>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
                     {data.photo && (
@@ -45,8 +45,8 @@ export default function PersonalDetails({ data, onChange }) {
                 )}
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-                <div className="form-group">
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }} className="animate-fade-in delay-200">
+                <div className="form-group" style={{ marginBottom: 0 }}>
                     <label className="form-label">First Name</label>
                     <input
                         type="text"
@@ -57,7 +57,7 @@ export default function PersonalDetails({ data, onChange }) {
                         placeholder="John"
                     />
                 </div>
-                <div className="form-group">
+                <div className="form-group" style={{ marginBottom: 0 }}>
                     <label className="form-label">Last Name</label>
                     <input
                         type="text"
@@ -70,7 +70,7 @@ export default function PersonalDetails({ data, onChange }) {
                 </div>
             </div>
 
-            <div className="form-group">
+            <div className="form-group animate-fade-in delay-300" style={{ marginTop: '1.25rem' }}>
                 <label className="form-label">Job Title</label>
                 <input
                     type="text"
@@ -82,8 +82,8 @@ export default function PersonalDetails({ data, onChange }) {
                 />
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-                <div className="form-group">
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }} className="animate-fade-in delay-400">
+                <div className="form-group" style={{ marginBottom: 0 }}>
                     <label className="form-label">Email</label>
                     <input
                         type="email"
@@ -94,7 +94,7 @@ export default function PersonalDetails({ data, onChange }) {
                         placeholder="john.doe@example.com"
                     />
                 </div>
-                <div className="form-group">
+                <div className="form-group" style={{ marginBottom: 0 }}>
                     <label className="form-label">Phone</label>
                     <input
                         type="tel"
@@ -107,7 +107,7 @@ export default function PersonalDetails({ data, onChange }) {
                 </div>
             </div>
 
-            <div className="form-group">
+            <div className="form-group animate-fade-in delay-500" style={{ marginTop: '1.25rem' }}>
                 <label className="form-label">Location</label>
                 <input
                     type="text"
@@ -119,7 +119,7 @@ export default function PersonalDetails({ data, onChange }) {
                 />
             </div>
 
-            <div className="form-group" style={{ position: 'relative' }}>
+            <div className="form-group animate-fade-in delay-500" style={{ position: 'relative' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
                     <label className="form-label" style={{ marginBottom: 0 }}>Professional Summary</label>
                     <AIHelper

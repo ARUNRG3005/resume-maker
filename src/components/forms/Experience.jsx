@@ -46,8 +46,8 @@ export default function Experience({ data, onChange }) {
                         </button>
                     </div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-                        <div className="form-group">
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }} className="animate-fade-in delay-100">
+                        <div className="form-group" style={{ marginBottom: 0 }}>
                             <label className="form-label">Job Title</label>
                             <input
                                 type="text"
@@ -57,7 +57,7 @@ export default function Experience({ data, onChange }) {
                                 placeholder="Software Engineer"
                             />
                         </div>
-                        <div className="form-group">
+                        <div className="form-group" style={{ marginBottom: 0 }}>
                             <label className="form-label">Company Name</label>
                             <input
                                 type="text"
@@ -69,7 +69,7 @@ export default function Experience({ data, onChange }) {
                         </div>
                     </div>
 
-                    <div className="form-group">
+                    <div className="form-group animate-fade-in delay-200" style={{ marginTop: '1.25rem' }}>
                         <label className="form-label">Location</label>
                         <input
                             type="text"
@@ -80,8 +80,8 @@ export default function Experience({ data, onChange }) {
                         />
                     </div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-                        <div className="form-group">
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }} className="animate-fade-in delay-300">
+                        <div className="form-group" style={{ marginBottom: 0 }}>
                             <label className="form-label">Start Date</label>
                             <input
                                 type="month"
@@ -90,7 +90,7 @@ export default function Experience({ data, onChange }) {
                                 onChange={(e) => updateItem(item.id, 'startDate', e.target.value)}
                             />
                         </div>
-                        <div className="form-group">
+                        <div className="form-group" style={{ marginBottom: 0 }}>
                             <label className="form-label">End Date</label>
                             <input
                                 type="month"
@@ -102,7 +102,7 @@ export default function Experience({ data, onChange }) {
                         </div>
                     </div>
 
-                    <div className="form-group" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <div className="form-group animate-fade-in delay-400" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginTop: '1.25rem' }}>
                         <input
                             type="checkbox"
                             id={`current-${item.id}`}
@@ -112,7 +112,7 @@ export default function Experience({ data, onChange }) {
                         <label htmlFor={`current-${item.id}`} style={{ fontSize: '0.875rem' }}>I currently work here</label>
                     </div>
 
-                    <div className="form-group" style={{ position: 'relative' }}>
+                    <div className="form-group animate-fade-in delay-500" style={{ position: 'relative' }}>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
                             <label className="form-label" style={{ marginBottom: 0 }}>Description</label>
                             <AIHelper

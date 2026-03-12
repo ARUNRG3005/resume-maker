@@ -44,7 +44,7 @@ export default function TemplateDynamic({ data }) {
                             <h3 style={{ fontSize: '1.2rem', fontWeight: 700, margin: '0 0 1rem 0', color: 'white', borderBottom: '2px solid rgba(255,255,255,0.2)', paddingBottom: '0.5rem', textTransform: 'uppercase' }}>Skills</h3>
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', fontSize: '0.95rem', color: '#e0e7ff' }}>
                                 {skills.map((skill, index) => (
-                                    <div key={index} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                                    <div key={index} className="resume-section" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                                         <div style={{ width: '6px', height: '6px', background: '#38bdf8', borderRadius: '50%' }}></div>
                                         {skill}
                                     </div>
@@ -59,7 +59,7 @@ export default function TemplateDynamic({ data }) {
                             <h3 style={{ fontSize: '1.2rem', fontWeight: 700, margin: '0 0 1rem 0', color: 'white', borderBottom: '2px solid rgba(255,255,255,0.2)', paddingBottom: '0.5rem', textTransform: 'uppercase' }}>Education</h3>
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
                                 {education.map(edu => (
-                                    <div key={edu.id}>
+                                    <div key={edu.id} className="resume-section">
                                         <div style={{ fontWeight: 700, fontSize: '0.95rem' }}>{edu.degree}</div>
                                         <div style={{ color: '#e0e7ff', fontSize: '0.9rem', marginBottom: '0.25rem' }}>{edu.fieldOfStudy}</div>
                                         <div style={{ color: '#818cf8', fontSize: '0.85rem' }}>{edu.school}</div>
@@ -96,7 +96,7 @@ export default function TemplateDynamic({ data }) {
                         </h2>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '2.5rem' }}>
                             {experience.map(exp => (
-                                <div key={exp.id}>
+                                <div key={exp.id} className="resume-section">
                                     <h3 style={{ fontSize: '1.3rem', fontWeight: 700, margin: '0 0 0.25rem 0', color: '#111827' }}>{exp.title}</h3>
                                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
                                         <div style={{ fontSize: '1.05rem', color: '#4f46e5', fontWeight: 600 }}>{exp.company} {exp.location && `• ${exp.location}`}</div>
@@ -122,7 +122,7 @@ export default function TemplateDynamic({ data }) {
                         </h2>
                         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
                             {projects.map(proj => (
-                                <div key={proj.id} style={{ background: '#f9fafb', padding: '1.5rem', borderRadius: '12px', border: '1px solid #e5e7eb' }}>
+                                <div key={proj.id} className="resume-section" style={{ background: '#f9fafb', padding: '1.5rem', borderRadius: '12px', border: '1px solid #e5e7eb' }}>
                                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '0.5rem' }}>
                                         <h3 style={{ fontSize: '1.15rem', fontWeight: 700, margin: 0, color: '#111827' }}>{proj.name}</h3>
                                         <span style={{ fontSize: '0.85rem', color: '#6b7280', fontWeight: 500 }}>{formatDate(proj.startDate)}</span>
@@ -146,7 +146,7 @@ export default function TemplateDynamic({ data }) {
                         </h2>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                             {certifications.map(cert => (
-                                <div key={cert.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid #f3f4f6', paddingBottom: '0.75rem' }}>
+                                <div key={cert.id} className="resume-section" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid #f3f4f6', paddingBottom: '0.75rem' }}>
                                     <div style={{ fontWeight: 600, color: '#111827', fontSize: '1.05rem' }}>{cert.name}</div>
                                     <div style={{ color: '#6b7280', fontSize: '0.95rem' }}>{cert.issuer}</div>
                                 </div>

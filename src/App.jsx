@@ -4,11 +4,13 @@ import Home from './components/Home';
 import Builder from './components/Builder';
 import ThemeToggle from './components/ThemeToggle';
 import Auth from './components/Auth';
+import ErrorBoundary from './components/ErrorBoundary';
 
 function App() {
   const [view, setView] = useState('home'); // 'home' or 'builder' or 'login' or 'signup'
   const [theme, setTheme] = useState('dark');
   const [user, setUser] = useState(null);
+  const [builderData, setBuilderData] = useState(null);
 
   const toggleTheme = () => {
     setTheme(prev => (prev === 'dark' ? 'light' : 'dark'));
@@ -29,13 +31,18 @@ function App() {
     setUser(null);
   };
 
+  const handleStartBuilder = (data = null) => {
+    setBuilderData(data);
+    setView('builder');
+  };
+
   return (
-    <>
-      {view === 'home' && <Home user={user} onLogout={handleLogout} onStart={() => setView('builder')} onLogin={() => setView('login')} onSignup={() => setView('signup')} theme={theme} toggleTheme={toggleTheme} />}
-      {view === 'builder' && <Builder onBackHome={() => setView('home')} theme={theme} toggleTheme={toggleTheme} />}
+    <ErrorBoundary>
+      {view === 'home' && <Home user={user} onLogout={handleLogout} onStart={handleStartBuilder} onLogin={() => setView('login')} onSignup={() => setView('signup')} theme={theme} toggleTheme={toggleTheme} />}
+      {view === 'builder' && <Builder initialData={builderData} onBackHome={() => setView('home')} theme={theme} toggleTheme={toggleTheme} />}
       {view === 'login' && <Auth initialMode="login" onBackHome={() => setView('home')} onAuthSuccess={handleAuthSuccess} theme={theme} toggleTheme={toggleTheme} />}
       {view === 'signup' && <Auth initialMode="signup" onBackHome={() => setView('home')} onAuthSuccess={handleAuthSuccess} theme={theme} toggleTheme={toggleTheme} />}
-    </>
+    </ErrorBoundary>
   );
 }
 

@@ -42,8 +42,8 @@ export default function Certifications({ data, onChange }) {
                         </button>
                     </div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-                        <div className="form-group">
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }} className="animate-fade-in delay-100">
+                        <div className="form-group" style={{ marginBottom: 0 }}>
                             <label className="form-label">Certification Name</label>
                             <input
                                 type="text"
@@ -53,7 +53,7 @@ export default function Certifications({ data, onChange }) {
                                 placeholder="AWS Certified Solutions Architect"
                             />
                         </div>
-                        <div className="form-group">
+                        <div className="form-group" style={{ marginBottom: 0 }}>
                             <label className="form-label">Issuing Organization</label>
                             <input
                                 type="text"
@@ -65,8 +65,8 @@ export default function Certifications({ data, onChange }) {
                         </div>
                     </div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-                        <div className="form-group">
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }} className="animate-fade-in delay-200">
+                        <div className="form-group" style={{ marginBottom: 0 }}>
                             <label className="form-label">Issue Date</label>
                             <input
                                 type="month"
@@ -75,7 +75,7 @@ export default function Certifications({ data, onChange }) {
                                 onChange={(e) => updateItem(item.id, 'date', e.target.value)}
                             />
                         </div>
-                        <div className="form-group">
+                        <div className="form-group" style={{ marginBottom: 0 }}>
                             <label className="form-label">Credential URL (optional)</label>
                             <input
                                 type="url"

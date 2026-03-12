@@ -56,7 +56,7 @@ export default function TemplateGrid({ data }) {
                             <h2 style={{ fontSize: '1.25rem', fontWeight: 800, color: '#18181b', marginBottom: '1.5rem', borderBottom: '2px solid #f4f4f5', paddingBottom: '0.5rem' }}>Experience</h2>
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
                                 {experience.map(exp => (
-                                    <div key={exp.id}>
+                                    <div key={exp.id} className="resume-section">
                                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '0.25rem' }}>
                                             <h3 style={{ fontSize: '1.1rem', fontWeight: 700, margin: 0, color: '#18181b' }}>{exp.title}</h3>
                                             <span style={{ fontSize: '0.85rem', color: '#f97316', fontWeight: 600 }}>
@@ -85,7 +85,7 @@ export default function TemplateGrid({ data }) {
                             <h2 style={{ fontSize: '1.25rem', fontWeight: 800, color: '#18181b', marginBottom: '1.5rem', borderBottom: '2px solid #f4f4f5', paddingBottom: '0.5rem' }}>Projects</h2>
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                                 {projects.map(proj => (
-                                    <div key={proj.id} style={{ borderLeft: '3px solid #f97316', paddingLeft: '1rem' }}>
+                                    <div key={proj.id} className="resume-section" style={{ borderLeft: '3px solid #f97316', paddingLeft: '1rem' }}>
                                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.25rem' }}>
                                             <h3 style={{ fontSize: '1.1rem', fontWeight: 700, margin: 0, color: '#18181b' }}>{proj.name}</h3>
                                             <span style={{ fontSize: '0.8rem', color: '#71717a' }}>{formatDate(proj.startDate)}</span>
@@ -107,7 +107,7 @@ export default function TemplateGrid({ data }) {
                                 <h2 style={{ fontSize: '1.25rem', fontWeight: 800, color: '#18181b', marginBottom: '1rem', borderBottom: '2px solid #f4f4f5', paddingBottom: '0.5rem' }}>Education</h2>
                                 <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                                     {education.map(edu => (
-                                        <div key={edu.id}>
+                                        <div key={edu.id} className="resume-section">
                                             <h3 style={{ fontSize: '1rem', fontWeight: 700, margin: '0 0 0.25rem 0', color: '#18181b' }}>{edu.degree}</h3>
                                             <div style={{ fontSize: '0.9rem', color: '#52525b' }}>{edu.fieldOfStudy} @ {edu.school}</div>
                                             <div style={{ fontSize: '0.85rem', color: '#a1a1aa', marginTop: '0.25rem' }}>{formatDate(edu.startDate)} - {formatDate(edu.endDate)}</div>
@@ -135,7 +135,7 @@ export default function TemplateGrid({ data }) {
                                 <h2 style={{ fontSize: '1.25rem', fontWeight: 800, color: '#18181b', marginBottom: '1rem', borderBottom: '2px solid #f4f4f5', paddingBottom: '0.5rem' }}>Awards & Certs</h2>
                                 <ul style={{ margin: 0, paddingLeft: '1.25rem', fontSize: '0.9rem', color: '#52525b', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                                     {certifications.map(cert => (
-                                        <li key={cert.id}><strong>{cert.name}</strong> — {cert.issuer}</li>
+                                        <li key={cert.id} className="resume-section"><strong>{cert.name}</strong> — {cert.issuer}</li>
                                     ))}
                                 </ul>
                             </section>

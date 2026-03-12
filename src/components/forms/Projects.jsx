@@ -44,8 +44,8 @@ export default function Projects({ data, onChange }) {
                         </button>
                     </div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-                        <div className="form-group">
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }} className="animate-fade-in delay-100">
+                        <div className="form-group" style={{ marginBottom: 0 }}>
                             <label className="form-label">Project Name</label>
                             <input
                                 type="text"
@@ -55,7 +55,7 @@ export default function Projects({ data, onChange }) {
                                 placeholder="E-commerce App"
                             />
                         </div>
-                        <div className="form-group">
+                        <div className="form-group" style={{ marginBottom: 0 }}>
                             <label className="form-label">Link (optional)</label>
                             <input
                                 type="url"
@@ -67,8 +67,8 @@ export default function Projects({ data, onChange }) {
                         </div>
                     </div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-                        <div className="form-group">
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }} className="animate-fade-in delay-200">
+                        <div className="form-group" style={{ marginBottom: 0 }}>
                             <label className="form-label">Start Date</label>
                             <input
                                 type="month"
@@ -77,7 +77,7 @@ export default function Projects({ data, onChange }) {
                                 onChange={(e) => updateItem(item.id, 'startDate', e.target.value)}
                             />
                         </div>
-                        <div className="form-group">
+                        <div className="form-group" style={{ marginBottom: 0 }}>
                             <label className="form-label">End Date</label>
                             <input
                                 type="month"
@@ -88,7 +88,7 @@ export default function Projects({ data, onChange }) {
                         </div>
                     </div>
 
-                    <div className="form-group" style={{ position: 'relative' }}>
+                    <div className="form-group animate-fade-in delay-300" style={{ position: 'relative', marginTop: '1.25rem' }}>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
                             <label className="form-label" style={{ marginBottom: 0 }}>Description</label>
                             <AIHelper

@@ -42,7 +42,7 @@ export default function TemplateMinimalist({ data }) {
                         Professional Experience
                     </h2>
                     {experience.map(exp => (
-                        <div key={exp.id} style={{ marginBottom: '1rem' }}>
+                        <div key={exp.id} className="resume-section" style={{ marginBottom: '1rem' }}>
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '0.25rem' }}>
                                 <h3 style={{ fontSize: '1.05rem', fontWeight: 600, margin: 0 }}>{exp.title}</h3>
                                 <span style={{ fontSize: '0.9rem', color: '#555' }}>
@@ -68,7 +68,7 @@ export default function TemplateMinimalist({ data }) {
                         Education
                     </h2>
                     {education.map(edu => (
-                        <div key={edu.id} style={{ marginBottom: '1rem' }}>
+                        <div key={edu.id} className="resume-section" style={{ marginBottom: '1rem' }}>
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '0.25rem' }}>
                                 <h3 style={{ fontSize: '1.05rem', fontWeight: 600, margin: 0 }}>{edu.school}</h3>
                                 <span style={{ fontSize: '0.9rem', color: '#555' }}>
@@ -93,7 +93,7 @@ export default function TemplateMinimalist({ data }) {
                         Projects
                     </h2>
                     {projects.map(proj => (
-                        <div key={proj.id} style={{ marginBottom: '1rem' }}>
+                        <div key={proj.id} className="resume-section" style={{ marginBottom: '1rem' }}>
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '0.25rem' }}>
                                 <h3 style={{ fontSize: '1.05rem', fontWeight: 600, margin: 0 }}>
                                     {proj.name}
@@ -130,7 +130,7 @@ export default function TemplateMinimalist({ data }) {
                         Certifications
                     </h2>
                     {certifications.map(cert => (
-                        <div key={cert.id} style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem', fontSize: '0.95rem' }}>
+                        <div key={cert.id} className="resume-section" style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem', fontSize: '0.95rem' }}>
                             <div>
                                 <strong>{cert.name}</strong> — {cert.issuer}
                                 {cert.link && <a href={cert.link} style={{ fontSize: '0.85rem', marginLeft: '0.5rem', color: '#0066cc', textDecoration: 'none' }}>[Verify]</a>}

@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import html2pdf from 'html2pdf.js';
-import { ArrowLeft, ArrowRight, CheckCircle, Download } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Download, Lock, Unlock } from 'lucide-react';
 import { resumeCategories } from '../data/categories';
 
 import PersonalDetails from './forms/PersonalDetails';
@@ -26,7 +26,7 @@ import TemplateSidebar from './templates/TemplateSidebar';
 
 import ThemeToggle from './ThemeToggle';
 import ATSScore from './ATSScore';
-import { analyzeATSScore } from '../services/ai';
+// Removed analyzeATSScore import since it is now internal to AIHelper
 
 const TEMPLATES = [
     { id: 'minimalist', name: 'Minimalist', component: TemplateMinimalist, color: '#f3f4f6' },
@@ -54,13 +54,15 @@ const steps = [
     { id: 'preview', label: '7. Preview' }
 ];
 
-export default function Builder({ onBackHome, theme, toggleTheme }) {
+export default function Builder({ onBackHome, theme, toggleTheme, initialData }) {
     const [currentStepIndex, setCurrentStepIndex] = useState(0);
     const [activeTemplate, setActiveTemplate] = useState('tech');
     const [activeCategory, setActiveCategory] = useState('IT');
-    const [isAnalyzingAI, setIsAnalyzingAI] = useState(false);
+    const [isPremium, setIsPremium] = useState(false);
+    const [previewHeight, setPreviewHeight] = useState(0);
+    const resumeRef = useRef(null);
 
-    const [resumeData, setResumeData] = useState({
+    const [resumeData, setResumeData] = useState(initialData || {
         personal: {
             firstName: '', lastName: '', jobTitle: '', email: '', phone: '', location: '', summary: '', photo: ''
         },
@@ -71,8 +73,44 @@ export default function Builder({ onBackHome, theme, toggleTheme }) {
         certifications: []
     });
 
+    const currentStep = steps[currentStepIndex];
+    const isPreview = currentStep.id === 'preview';
+
+    // Monitor the height of the resume document
+    useEffect(() => {
+        if (!isPreview || !resumeRef.current) return;
+
+        const observer = new ResizeObserver((entries) => {
+            for (let entry of entries) {
+                setPreviewHeight(entry.contentRect.height);
+            }
+        });
+
+        observer.observe(resumeRef.current);
+
+        return () => observer.disconnect();
+    }, [isPreview, activeTemplate, resumeData]);
+
+    const PAGE_HEIGHT_LIMIT = 1056;
+    const isOverLimit = previewHeight > PAGE_HEIGHT_LIMIT;
+    const canDownload = isPremium || !isOverLimit;
+
     const updateSection = (section, data) => {
         setResumeData(prev => ({ ...prev, [section]: data }));
+    };
+
+    const handleUnlockPremium = () => {
+        if (isPremium) {
+            setIsPremium(false);
+            return;
+        }
+        const password = window.prompt("Enter Premium Password to Unlock:");
+        if (password === "3011") {
+            setIsPremium(true);
+            alert("Premium Unlocked Successfully!");
+        } else if (password !== null) {
+            alert("Incorrect password. Please contact Arun for premium access.");
+        }
     };
 
     const handleDownloadPDF = async () => {
@@ -91,7 +129,8 @@ export default function Builder({ onBackHome, theme, toggleTheme }) {
                 useCORS: true,
                 windowWidth: 816 // Force desktop width for the capture
             },
-            jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+            jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
+            pagebreak: isPremium ? { mode: 'css', avoid: '.resume-section' } : undefined
         };
 
         await html2pdf().set(opt).from(element).save();
@@ -104,24 +143,11 @@ export default function Builder({ onBackHome, theme, toggleTheme }) {
         if (currentStepIndex < steps.length - 1) setCurrentStepIndex(currentStepIndex + 1);
     };
 
-    const handleFetchAIAtsSuggestions = async (missingKeywords) => {
-        setIsAnalyzingAI(true);
-        try {
-            const suggestions = await analyzeATSScore(missingKeywords);
-            alert("AI Suggestions:\n\n" + suggestions);
-        } catch (error) {
-            alert('Failed to fetch AI suggestions. Please try again.');
-        } finally {
-            setIsAnalyzingAI(false);
-        }
-    };
+    // handleNext handles stepper iteration
 
     const handlePrev = () => {
         if (currentStepIndex > 0) setCurrentStepIndex(currentStepIndex - 1);
     };
-
-    const currentStep = steps[currentStepIndex];
-    const isPreview = currentStep.id === 'preview';
 
     return (
         <div className={`builder-layout animate-fade-in ${isPreview ? 'preview-mode' : 'form-mode'}`}>
@@ -228,7 +254,32 @@ export default function Builder({ onBackHome, theme, toggleTheme }) {
 
                             <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', width: '100%', marginTop: '0.5rem' }}>
                                 <button className="btn btn-outline" onClick={handlePrev}><ArrowLeft size={16} /> Data Entry</button>
-                                <button className="btn btn-primary" onClick={handleDownloadPDF}><Download size={16} /> Download PDF</button>
+                                
+                                <button
+                                    onClick={handleUnlockPremium}
+                                    className="btn"
+                                    style={{
+                                        background: isPremium ? 'var(--success)' : 'rgba(255,255,255,0.1)',
+                                        color: isPremium ? '#000' : 'var(--text-primary)',
+                                        border: `1px solid ${isPremium ? 'transparent' : 'var(--border)'}`,
+                                        display: 'flex', alignItems: 'center', gap: '0.5rem'
+                                    }}
+                                >
+                                    {isPremium ? <Unlock size={16} /> : <Lock size={16} />}
+                                    {isPremium ? 'Premium Active' : 'Unlock Premium'}
+                                </button>
+
+                                <button 
+                                    className={`btn ${canDownload ? 'btn-primary' : 'btn-outline'}`} 
+                                    onClick={handleDownloadPDF}
+                                    disabled={!canDownload}
+                                    style={{ 
+                                        opacity: canDownload ? 1 : 0.5,
+                                        cursor: canDownload ? 'pointer' : 'not-allowed'
+                                    }}
+                                >
+                                    <Download size={16} /> Download PDF
+                                </button>
                             </div>
                         </div>
 
@@ -236,13 +287,12 @@ export default function Builder({ onBackHome, theme, toggleTheme }) {
                         <div style={{ width: '100%', maxWidth: '816px', margin: '0 auto 1.5rem auto' }}>
                             <ATSScore
                                 resumeData={resumeData}
-                                onFetchAISuggestions={handleFetchAIAtsSuggestions}
-                                isAnalyzingAI={isAnalyzingAI}
+                                onUpdateSummary={(newSummary) => updateSection('personal', { ...resumeData.personal, summary: newSummary })}
                             />
                         </div>
 
-                        <div className="resume-preview-wrapper" style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
-                            <div className="resume-document" id="resume-preview-document">
+                        <div className="resume-preview-wrapper" style={{ display: 'flex', justifyContent: 'center', width: '100%', position: 'relative', overflow: 'hidden', paddingBottom: '4rem' }}>
+                            <div className="resume-document" id="resume-preview-document" ref={resumeRef}>
                                 {TEMPLATES.map(tmpl => {
                                     if (activeTemplate === tmpl.id) {
                                         const TemplateComponent = tmpl.component;
@@ -251,6 +301,42 @@ export default function Builder({ onBackHome, theme, toggleTheme }) {
                                     return null;
                                 })}
                             </div>
+
+                            {/* Premium Overlay Warning */}
+                            {!isPremium && isOverLimit && (
+                                <div style={{
+                                    position: 'absolute',
+                                    bottom: '0',
+                                    left: '0',
+                                    right: '0',
+                                    background: 'linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.8) 50%, transparent 100%)',
+                                    height: '300px',
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    alignItems: 'center',
+                                    justifyContent: 'flex-end',
+                                    paddingBottom: '3rem',
+                                    zIndex: 10,
+                                    backdropFilter: 'blur(2px)'
+                                }}>
+                                    <div className="glass-panel" style={{
+                                        padding: '1.5rem',
+                                        borderRadius: '16px',
+                                        textAlign: 'center',
+                                        border: '1px solid rgba(239, 68, 68, 0.4)',
+                                        boxShadow: '0 0 40px rgba(239, 68, 68, 0.2)'
+                                    }}>
+                                        <Lock size={32} color="#ef4444" style={{ margin: '0 auto 1rem auto' }} />
+                                        <h3 style={{ margin: '0 0 0.5rem 0', color: '#ef4444' }}>Resume Too Long (Premium Required)</h3>
+                                        <p style={{ margin: '0 0 1rem 0', color: 'var(--text-secondary)', maxWidth: '400px' }}>
+                                            Your resume content exceeds the 1-page free limit. Upgrade to Premium to export multi-page resumes seamlessly!
+                                        </p>
+                                        <button className="btn btn-primary" onClick={handleUnlockPremium} style={{ background: '#ef4444', color: 'white', border: 'none' }}>
+                                            Unlock Premium Now
+                                        </button>
+                                    </div>
+                                </div>
+                            )}
                         </div>
                     </div>
                 )}

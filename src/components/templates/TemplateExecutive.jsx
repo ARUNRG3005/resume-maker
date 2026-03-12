@@ -50,7 +50,7 @@ export default function TemplateExecutive({ data }) {
                     <h3 style={{ fontSize: '1.3rem', fontWeight: 700, color: '#1e3a8a', borderBottom: '1px solid #e5e7eb', paddingBottom: '0.5rem', marginBottom: '1.5rem', textTransform: 'uppercase' }}>Professional Experience</h3>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
                         {experience.map(exp => (
-                            <div key={exp.id}>
+                            <div key={exp.id} className="resume-section">
                                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '0.25rem' }}>
                                     <h4 style={{ fontSize: '1.15rem', fontWeight: 700, margin: 0, color: '#111827' }}>{exp.title}</h4>
                                     <span style={{ fontSize: '0.95rem', color: '#1e3a8a', fontWeight: 600, fontFamily: "'Arial', sans-serif" }}>
@@ -78,7 +78,7 @@ export default function TemplateExecutive({ data }) {
                             <h3 style={{ fontSize: '1.3rem', fontWeight: 700, color: '#1e3a8a', borderBottom: '1px solid #e5e7eb', paddingBottom: '0.5rem', marginBottom: '1.5rem', textTransform: 'uppercase' }}>Education</h3>
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                                 {education.map(edu => (
-                                    <div key={edu.id}>
+                                    <div key={edu.id} className="resume-section">
                                         <h4 style={{ fontSize: '1.05rem', fontWeight: 700, color: '#111827', margin: '0 0 0.25rem 0' }}>{edu.degree}, {edu.fieldOfStudy}</h4>
                                         <div style={{ fontSize: '1rem', color: '#4b5563', fontStyle: 'italic', marginBottom: '0.25rem' }}>{edu.school}</div>
                                         <div style={{ fontSize: '0.9rem', color: '#1e3a8a', fontFamily: "'Arial', sans-serif", fontWeight: 600 }}>{formatDate(edu.startDate)} — {formatDate(edu.endDate)}</div>
@@ -94,7 +94,7 @@ export default function TemplateExecutive({ data }) {
                             <h3 style={{ fontSize: '1.3rem', fontWeight: 700, color: '#1e3a8a', borderBottom: '1px solid #e5e7eb', paddingBottom: '0.5rem', marginBottom: '1.5rem', textTransform: 'uppercase' }}>Certifications & Awards</h3>
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', fontFamily: "'Arial', sans-serif" }}>
                                 {certifications.map(cert => (
-                                    <div key={cert.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+                                    <div key={cert.id} className="resume-section" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
                                         <span style={{ fontWeight: 600, color: '#111827', fontSize: '0.95rem' }}>{cert.name}</span>
                                         <span style={{ color: '#6b7280', fontSize: '0.85rem' }}>{cert.issuer}</span>
                                     </div>
@@ -112,7 +112,7 @@ export default function TemplateExecutive({ data }) {
                             <h3 style={{ fontSize: '1.3rem', fontWeight: 700, color: '#1e3a8a', borderBottom: '1px solid #e5e7eb', paddingBottom: '0.5rem', marginBottom: '1.5rem', textTransform: 'uppercase' }}>Key Initiatives</h3>
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                                 {projects.map(proj => (
-                                    <div key={proj.id}>
+                                    <div key={proj.id} className="resume-section">
                                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '0.25rem' }}>
                                             <h4 style={{ fontSize: '1.05rem', fontWeight: 700, margin: 0, color: '#111827' }}>{proj.name}</h4>
                                             {proj.link && <a href={proj.link} style={{ fontSize: '0.85rem', color: '#1e3a8a', textDecoration: 'underline', fontFamily: "'Arial', sans-serif" }}>Link</a>}
@@ -132,7 +132,7 @@ export default function TemplateExecutive({ data }) {
                             <h3 style={{ fontSize: '1.3rem', fontWeight: 700, color: '#1e3a8a', borderBottom: '1px solid #e5e7eb', paddingBottom: '0.5rem', marginBottom: '1.5rem', textTransform: 'uppercase' }}>Core Competencies</h3>
                             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', fontFamily: "'Arial', sans-serif" }}>
                                 {skills.map((skill, index) => (
-                                    <span key={index} style={{ color: '#111827', fontSize: '0.95rem', fontWeight: 600, borderRight: '1px solid #d1d5db', paddingRight: '0.75rem' }}>
+                                    <span key={index} className="resume-section" style={{ color: '#111827', fontSize: '0.95rem', fontWeight: 600, borderRight: '1px solid #d1d5db', paddingRight: '0.75rem' }}>
                                         {skill}
                                     </span>
                                 ))}

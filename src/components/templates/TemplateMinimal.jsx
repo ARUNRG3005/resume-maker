@@ -44,7 +44,7 @@ export default function TemplateMinimal({ data }) {
                     </h2>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
                         {experience.map(exp => (
-                            <div key={exp.id}>
+                            <div key={exp.id} className="resume-section">
                                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '0.25rem' }}>
                                     <h3 style={{ fontSize: '1.1rem', fontWeight: 600, margin: 0 }}>{exp.title}</h3>
                                     <span style={{ fontSize: '0.9rem', color: '#666' }}>
@@ -71,7 +71,7 @@ export default function TemplateMinimal({ data }) {
                     </h2>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                         {projects.map(proj => (
-                            <div key={proj.id}>
+                            <div key={proj.id} className="resume-section">
                                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '0.25rem' }}>
                                     <div style={{ display: 'flex', alignItems: 'baseline', gap: '1rem' }}>
                                         <h3 style={{ fontSize: '1.1rem', fontWeight: 600, margin: 0 }}>{proj.name}</h3>
@@ -101,7 +101,7 @@ export default function TemplateMinimal({ data }) {
                             </h2>
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
                                 {education.map(edu => (
-                                    <div key={edu.id}>
+                                    <div key={edu.id} className="resume-section">
                                         <h3 style={{ fontSize: '1rem', fontWeight: 600, margin: '0 0 0.25rem 0' }}>{edu.school}</h3>
                                         <div style={{ fontSize: '0.95rem', color: '#333' }}>{edu.degree}, {edu.fieldOfStudy}</div>
                                         <div style={{ fontSize: '0.85rem', color: '#666', marginTop: '0.25rem' }}>{formatDate(edu.startDate)} - {formatDate(edu.endDate)}</div>
@@ -134,7 +134,7 @@ export default function TemplateMinimal({ data }) {
                             </h2>
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                                 {certifications.map(cert => (
-                                    <div key={cert.id}>
+                                    <div key={cert.id} className="resume-section">
                                         <div style={{ fontSize: '0.95rem', fontWeight: 600, color: '#333' }}>{cert.name}</div>
                                         <div style={{ fontSize: '0.85rem', color: '#666' }}>{cert.issuer}</div>
                                     </div>

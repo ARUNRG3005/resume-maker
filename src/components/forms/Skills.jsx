@@ -24,7 +24,7 @@ export default function Skills({ data, onChange, jobTitle }) {
             </div>
 
             <div className="glass-panel" style={{ padding: '1.5rem', borderRadius: 'var(--radius-md)' }}>
-                <form onSubmit={addSkill} style={{ display: 'flex', gap: '1rem', marginBottom: '1.5rem' }}>
+                <form onSubmit={addSkill} style={{ display: 'flex', gap: '1rem', marginBottom: '1.5rem' }} className="animate-fade-in delay-100">
                     <input
                         type="text"
                         className="form-input"
@@ -37,7 +37,7 @@ export default function Skills({ data, onChange, jobTitle }) {
                     </button>
                 </form>
 
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }} className="animate-fade-in delay-200">
                     {data.map((skill, index) => (
                         <div
                             key={index}
@@ -73,7 +73,7 @@ export default function Skills({ data, onChange, jobTitle }) {
                         </div>
                     )}
                 </div>
-                <div style={{ marginTop: '2rem', paddingTop: '1.5rem', borderTop: '1px solid var(--border)' }}>
+                <div className="animate-fade-in delay-300" style={{ marginTop: '2rem', paddingTop: '1.5rem', borderTop: '1px solid var(--border)' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                         <div>
                             <h3 style={{ fontSize: '1rem', fontWeight: 600, marginBottom: '0.25rem' }}>AI Skill Suggestions</h3>

@@ -55,7 +55,7 @@ export default function TemplateTech({ data }) {
                             </h3>
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
                                 {experience.map(exp => (
-                                    <div key={exp.id} style={{ position: 'relative', paddingLeft: '1.5rem', borderLeft: '2px solid #e2e8f0' }}>
+                                    <div key={exp.id} className="resume-section" style={{ position: 'relative', paddingLeft: '1.5rem', borderLeft: '2px solid #e2e8f0' }}>
                                         <div style={{ position: 'absolute', left: '-6px', top: '6px', width: '10px', height: '10px', borderRadius: '50%', background: '#0ea5e9' }}></div>
                                         <h4 style={{ fontSize: '1.15rem', fontWeight: 700, margin: 0, color: '#0f172a' }}>{exp.title}</h4>
                                         <div style={{ display: 'flex', gap: '1rem', fontSize: '0.95rem', color: '#64748b', fontWeight: 500, margin: '0.25rem 0 1rem 0' }}>
@@ -80,7 +80,7 @@ export default function TemplateTech({ data }) {
                             </h3>
                             <div style={{ display: 'grid', gap: '1.5rem' }}>
                                 {projects.map(proj => (
-                                    <div key={proj.id} style={{ border: '1px solid #e2e8f0', borderRadius: '8px', padding: '1.5rem', background: 'white' }}>
+                                    <div key={proj.id} className="resume-section" style={{ border: '1px solid #e2e8f0', borderRadius: '8px', padding: '1.5rem', background: 'white' }}>
                                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
                                             <h4 style={{ fontSize: '1.1rem', fontWeight: 700, margin: 0, color: '#0f172a' }}>{proj.name}</h4>
                                             {proj.link && <a href={proj.link} style={{ display: 'inline-block', fontSize: '0.85rem', color: '#ffffff', background: '#0ea5e9', padding: '0.2rem 0.6rem', borderRadius: '4px', textDecoration: 'none', fontWeight: 600 }}>Source</a>}
@@ -106,7 +106,7 @@ export default function TemplateTech({ data }) {
                             </h3>
                             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
                                 {skills.map((skill, index) => (
-                                    <span key={index} style={{ background: '#f1f5f9', color: '#334155', padding: '0.4rem 0.8rem', borderRadius: '4px', fontSize: '0.9rem', fontWeight: 600, border: '1px solid #e2e8f0' }}>
+                                    <span key={index} className="resume-section" style={{ background: '#f1f5f9', color: '#334155', padding: '0.4rem 0.8rem', borderRadius: '4px', fontSize: '0.9rem', fontWeight: 600, border: '1px solid #e2e8f0' }}>
                                         {skill}
                                     </span>
                                 ))}
@@ -122,7 +122,7 @@ export default function TemplateTech({ data }) {
                             </h3>
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                                 {education.map(edu => (
-                                    <div key={edu.id}>
+                                    <div key={edu.id} className="resume-section">
                                         <h4 style={{ fontSize: '1rem', fontWeight: 700, color: '#0f172a', margin: '0 0 0.25rem 0' }}>{edu.degree}</h4>
                                         <div style={{ fontSize: '0.95rem', color: '#0ea5e9', fontWeight: 500, marginBottom: '0.25rem' }}>{edu.fieldOfStudy}</div>
                                         <div style={{ fontSize: '0.9rem', color: '#64748b' }}>{edu.school}</div>
@@ -141,7 +141,7 @@ export default function TemplateTech({ data }) {
                             </h3>
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                                 {certifications.map(cert => (
-                                    <div key={cert.id} style={{ background: '#f8fafc', padding: '1rem', borderRadius: '6px', borderLeft: '2px solid #0ea5e9' }}>
+                                    <div key={cert.id} className="resume-section" style={{ background: '#f8fafc', padding: '1rem', borderRadius: '6px', borderLeft: '2px solid #0ea5e9' }}>
                                         <div style={{ fontWeight: 700, color: '#0f172a', fontSize: '0.95rem', marginBottom: '0.25rem' }}>{cert.name}</div>
                                         <div style={{ color: '#64748b', fontSize: '0.85rem' }}>{cert.issuer}</div>
                                     </div>
