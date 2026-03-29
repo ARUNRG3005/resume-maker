@@ -1,0 +1,122 @@
+[
+  {
+    "id": "job-001",
+    "title": "Frontend React Developer",
+    "company": "TechVision Inc.",
+    "location": "Remote",
+    "salary": "$110,000 - $130,000",
+    "description": "We are seeking a mid-level React developer to build interactive web interfaces for our main SaaS product.",
+    "skills": ["JavaScript", "React", "CSS", "HTML", "TypeScript", "Redux"],
+    "applyLink": "https://example.com/apply/job-001"
+  },
+  {
+    "id": "job-002",
+    "title": "Senior Full Stack Engineer",
+    "company": "DataSphere",
+    "location": "New York, NY",
+    "salary": "$150,000 - $180,000",
+    "description": "Looking for an experienced engineer comfortable with both Node.js backends and React frontends.",
+    "skills": ["Node.js", "React", "Express", "MongoDB", "SQL", "Docker", "AWS", "TypeScript"],
+    "applyLink": "https://example.com/apply/job-002"
+  },
+  {
+    "id": "job-003",
+    "title": "Backend Python Developer",
+    "company": "AI Dynamics",
+    "location": "San Francisco, CA",
+    "salary": "$130,000 - $160,000",
+    "description": "Join our AI backend team to build scalable microservices using Python and FastAPI.",
+    "skills": ["Python", "FastAPI", "Django", "PostgreSQL", "Docker", "Kubernetes", "AWS"],
+    "applyLink": "https://example.com/apply/job-003"
+  },
+  {
+    "id": "job-004",
+    "title": "Cloud DevOps Engineer",
+    "company": "CloudScape",
+    "location": "Remote",
+    "salary": "$140,000 - $170,000",
+    "description": "Manage our CI/CD pipelines, container orchestration, and cloud infrastructure.",
+    "skills": ["AWS", "Docker", "Kubernetes", "Terraform", "CI/CD", "Linux", "Python", "Bash"],
+    "applyLink": "https://example.com/apply/job-004"
+  },
+  {
+    "id": "job-005",
+    "title": "UI/UX Product Designer",
+    "company": "CreativeHub",
+    "location": "Austin, TX",
+    "salary": "$90,000 - $120,000",
+    "description": "Design user-centric web and mobile applications. Create wireframes, prototypes, and high-fidelity mockups.",
+    "skills": ["Figma", "Sketch", "Adobe XD", "UI/UX", "Prototyping", "CSS", "HTML"],
+    "applyLink": "https://example.com/apply/job-005"
+  },
+  {
+    "id": "job-006",
+    "title": "Data Scientist",
+    "company": "MetricsLab",
+    "location": "Boston, MA",
+    "salary": "$125,000 - $155,000",
+    "description": "Analyze large datasets to extract meaningful insights and build predictive models.",
+    "skills": ["Python", "Pandas", "Machine Learning", "SQL", "Scikit-Learn", "TensorFlow", "Data Analysis"],
+    "applyLink": "https://example.com/apply/job-006"
+  },
+  {
+    "id": "job-007",
+    "title": "Cybersecurity Analyst",
+    "company": "SecureNet",
+    "location": "Washington, D.C.",
+    "salary": "$115,000 - $140,000",
+    "description": "Monitor networks for security breaches, investigate violations, and implement security measures.",
+    "skills": ["Cybersecurity", "Network Security", "Linux", "Python", "SIEM", "Penetration Testing"],
+    "applyLink": "https://example.com/apply/job-007"
+  },
+  {
+    "id": "job-008",
+    "title": "Mobile App Developer (Flutter)",
+    "company": "Appify",
+    "location": "Remote",
+    "salary": "$100,000 - $130,000",
+    "description": "Build cross-platform mobile applications using Flutter and Dart.",
+    "skills": ["Flutter", "Dart", "Firebase", "iOS", "Android", "Mobile Development"],
+    "applyLink": "https://example.com/apply/job-008"
+  },
+  {
+    "id": "job-009",
+    "title": "Machine Learning Engineer",
+    "company": "AI Dynamics",
+    "location": "San Francisco, CA",
+    "salary": "$150,000 - $190,000",
+    "description": "Design, develop, and deploy machine learning models into production environments.",
+    "skills": ["Python", "Machine Learning", "PyTorch", "TensorFlow", "AWS", "Docker", "C++"],
+    "applyLink": "https://example.com/apply/job-009"
+  },
+  {
+    "id": "job-010",
+    "title": "Software Engineering Manager",
+    "company": "Enterprise Solutions",
+    "location": "Chicago, IL",
+    "salary": "$160,000 - $200,000",
+    "description": "Lead a team of 10+ engineers building enterprise-grade SaaS products.",
+    "skills": ["Leadership", "Agile", "System Design", "JavaScript", "Java", "Team Management", "Cloud Architecture"],
+    "applyLink": "https://example.com/apply/job-010"
+  },
+  {
+    "id": "job-011",
+    "title": "Entry Level Web Developer",
+    "company": "StartUp GenZ",
+    "location": "Remote",
+    "salary": "$60,000 - $80,000",
+    "description": "Great opportunity for recent bootcamp grads. Work with a modern stack.",
+    "skills": ["HTML", "CSS", "JavaScript", "React", "Git", "TailwindCSS"],
+    "applyLink": "https://example.com/apply/job-011"
+  },
+  {
+    "id": "job-012",
+    "title": "Database Administrator",
+    "company": "CorpDB",
+    "location": "Dallas, TX",
+    "salary": "$105,000 - $135,000",
+    "description": "Ensure optimal performance and security of our large-scale relational databases.",
+    "skills": ["SQL", "PostgreSQL", "Oracle", "MySQL", "Database Management", "Performance Tuning"],
+    "applyLink": "https://example.com/apply/job-012"
+  }
+]

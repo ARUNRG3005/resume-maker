@@ -26,7 +26,11 @@ import TemplateSidebar from './templates/TemplateSidebar';
 
 import ThemeToggle from './ThemeToggle';
 import ATSScore from './ATSScore';
-// Removed analyzeATSScore import since it is now internal to AIHelper
+import InterviewPrepModal from './InterviewPrepModal';
+import BorderGlow from './BorderGlow';
+import { Target, MessageSquare, Share2, Briefcase } from 'lucide-react'; // For the Interview button
+import ShareModal from './ShareModal';
+import JobRecommendationsModal from './JobRecommendationsModal';
 
 const TEMPLATES = [
     { id: 'minimalist', name: 'Minimalist', component: TemplateMinimalist, color: '#f3f4f6' },
@@ -54,15 +58,18 @@ const steps = [
     { id: 'preview', label: '7. Preview' }
 ];
 
-export default function Builder({ onBackHome, theme, toggleTheme, initialData }) {
+export default function Builder({ onBackHome, onBackDashboard, theme, toggleTheme, initialDoc, user }) {
     const [currentStepIndex, setCurrentStepIndex] = useState(0);
     const [activeTemplate, setActiveTemplate] = useState('tech');
     const [activeCategory, setActiveCategory] = useState('IT');
     const [isPremium, setIsPremium] = useState(false);
     const [previewHeight, setPreviewHeight] = useState(0);
+    const [showInterviewPrep, setShowInterviewPrep] = useState(false);
+    const [showShareModal, setShowShareModal] = useState(false);
+    const [showJobRecommendations, setShowJobRecommendations] = useState(false);
     const resumeRef = useRef(null);
 
-    const [resumeData, setResumeData] = useState(initialData || {
+    const [resumeData, setResumeData] = useState(initialDoc?.data || {
         personal: {
             firstName: '', lastName: '', jobTitle: '', email: '', phone: '', location: '', summary: '', photo: ''
         },
@@ -72,6 +79,26 @@ export default function Builder({ onBackHome, theme, toggleTheme, initialData })
         projects: [],
         certifications: []
     });
+
+    // Auto-save to localStorage
+    useEffect(() => {
+        if (!initialDoc || !initialDoc.id) return;
+        
+        const saved = localStorage.getItem('userResumes');
+        if (saved) {
+            try {
+                const resumes = JSON.parse(saved);
+                const updated = resumes.map(r => 
+                    r.id === initialDoc.id 
+                    ? { ...r, data: resumeData, lastModified: Date.now() } 
+                    : r
+                );
+                localStorage.setItem('userResumes', JSON.stringify(updated));
+            } catch (e) {
+                console.error("Failed to auto-save", e);
+            }
+        }
+    }, [resumeData, initialDoc]);
 
     const currentStep = steps[currentStepIndex];
     const isPreview = currentStep.id === 'preview';
@@ -155,9 +182,16 @@ export default function Builder({ onBackHome, theme, toggleTheme, initialData })
             {/* Top Navigation Bar */}
             <nav className="builder-nav">
                 <div className="nav-container">
-                    <h2 onClick={onBackHome} style={{ fontSize: '1.25rem', fontWeight: 800, margin: 0, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <h2 onClick={user ? onBackDashboard : onBackHome} style={{ fontSize: '1.25rem', fontWeight: 800, margin: 0, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                         <span style={{ color: 'var(--primary)' }}>AI</span>Resume
                     </h2>
+                    
+                    {initialDoc?.name && (
+                        <div style={{ marginLeft: '1rem', padding: '0.3rem 0.8rem', background: 'rgba(255,255,255,0.05)', borderRadius: '20px', border: '1px solid var(--border)', fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
+                            {initialDoc.name}
+                        </div>
+                    )}
+
                     <div className="stepper-dots">
                         {steps.map((step, idx) => (
                             <div
@@ -175,9 +209,16 @@ export default function Builder({ onBackHome, theme, toggleTheme, initialData })
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
                         <ThemeToggle theme={theme} toggleTheme={toggleTheme} inline />
-                        <button onClick={onBackHome} className="btn btn-outline" style={{ padding: '0.4rem 0.8rem', fontSize: '0.8rem' }}>
-                            Exit Builder
-                        </button>
+                        
+                        {user ? (
+                            <button onClick={onBackDashboard} className="btn btn-outline" style={{ padding: '0.4rem 0.8rem', fontSize: '0.8rem' }}>
+                                Back to Dashboard
+                            </button>
+                        ) : (
+                            <button onClick={onBackHome} className="btn btn-outline" style={{ padding: '0.4rem 0.8rem', fontSize: '0.8rem' }}>
+                                Exit Builder
+                            </button>
+                        )}
                     </div>
                 </div>
             </nav>
@@ -192,14 +233,14 @@ export default function Builder({ onBackHome, theme, toggleTheme, initialData })
                             <p style={{ color: 'var(--text-secondary)' }}>Fill out your details for this section.</p>
                         </div>
 
-                        <div className="form-content-card glass-panel animate-fade-in">
+                        <BorderGlow className="form-content-card glass-panel animate-fade-in" style={{ padding: '0', background: 'transparent', boxShadow: 'none' }} borderRadius={24} glowColor="186 100% 50%" edgeSensitivity={20}>
                             {currentStep.id === 'personal' && <PersonalDetails data={resumeData.personal} onChange={(data) => updateSection('personal', data)} />}
                             {currentStep.id === 'education' && <Education data={resumeData.education} onChange={(data) => updateSection('education', data)} />}
-                            {currentStep.id === 'experience' && <Experience data={resumeData.experience} onChange={(data) => updateSection('experience', data)} />}
+                            {currentStep.id === 'experience' && <Experience data={resumeData.experience} jobTitle={resumeData.personal.jobTitle} onChange={(data) => updateSection('experience', data)} />}
                             {currentStep.id === 'skills' && <Skills data={resumeData.skills} jobTitle={resumeData.personal.jobTitle} onChange={(data) => updateSection('skills', data)} />}
                             {currentStep.id === 'projects' && <Projects data={resumeData.projects} onChange={(data) => updateSection('projects', data)} />}
                             {currentStep.id === 'certifications' && <Certifications data={resumeData.certifications} onChange={(data) => updateSection('certifications', data)} />}
-                        </div>
+                        </BorderGlow>
 
                         {/* Form Navigation */}
                         <div className="form-actions">
@@ -222,7 +263,7 @@ export default function Builder({ onBackHome, theme, toggleTheme, initialData })
                 ) : (
                     // PREVIEW MODE (Step 7)
                     <div className="preview-container animate-fade-in">
-                        <div className="preview-toolbar glass-panel" style={{ flexDirection: 'column', gap: '1.5rem', justifyContent: 'center', alignItems: 'center' }}>
+                        <BorderGlow className="preview-toolbar glass-panel" style={{ flexDirection: 'column', gap: '1.5rem', justifyContent: 'center', alignItems: 'center' }} borderRadius={16} glowColor="186 100% 50%" edgeSensitivity={20}>
 
                             {/* CATEGORY NAV */}
                             <div className="category-tabs" style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', justifyContent: 'center', borderBottom: '1px solid var(--border)', paddingBottom: '1rem', width: '100%' }}>
@@ -252,7 +293,7 @@ export default function Builder({ onBackHome, theme, toggleTheme, initialData })
                                 ))}
                             </div>
 
-                            <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', width: '100%', marginTop: '0.5rem' }}>
+                            <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', width: '100%', marginTop: '0.5rem', flexWrap: 'wrap' }}>
                                 <button className="btn btn-outline" onClick={handlePrev}><ArrowLeft size={16} /> Data Entry</button>
                                 
                                 <button
@@ -269,6 +310,42 @@ export default function Builder({ onBackHome, theme, toggleTheme, initialData })
                                     {isPremium ? 'Premium Active' : 'Unlock Premium'}
                                 </button>
 
+                                <button
+                                    onClick={() => setShowInterviewPrep(true)}
+                                    className="btn btn-outline"
+                                    style={{
+                                        borderColor: '#ff00ea',
+                                        color: '#ff00ea',
+                                        display: 'flex', alignItems: 'center', gap: '0.5rem'
+                                    }}
+                                >
+                                    <MessageSquare size={16} /> AI Interview Coach
+                                </button>
+
+                                <button
+                                    onClick={() => setShowJobRecommendations(true)}
+                                    className="btn btn-outline"
+                                    style={{
+                                        borderColor: '#00f0ff',
+                                        color: '#00f0ff',
+                                        display: 'flex', alignItems: 'center', gap: '0.5rem'
+                                    }}
+                                >
+                                    <Briefcase size={16} /> Find Jobs for Me
+                                </button>
+
+                                <button
+                                    onClick={() => setShowShareModal(true)}
+                                    className="btn btn-primary"
+                                    style={{
+                                        display: 'flex', alignItems: 'center', gap: '0.5rem',
+                                        background: 'linear-gradient(135deg, var(--primary), var(--secondary))',
+                                        border: 'none', color: '#000'
+                                    }}
+                                >
+                                    <Share2 size={16} color="#000" /> <span style={{fontWeight: 700}}>Share Online</span>
+                                </button>
+
                                 <button 
                                     className={`btn ${canDownload ? 'btn-primary' : 'btn-outline'}`} 
                                     onClick={handleDownloadPDF}
@@ -281,13 +358,14 @@ export default function Builder({ onBackHome, theme, toggleTheme, initialData })
                                     <Download size={16} /> Download PDF
                                 </button>
                             </div>
-                        </div>
+                        </BorderGlow>
 
                         {/* ATS MATCHING WIDGET */}
                         <div style={{ width: '100%', maxWidth: '816px', margin: '0 auto 1.5rem auto' }}>
                             <ATSScore
                                 resumeData={resumeData}
                                 onUpdateSummary={(newSummary) => updateSection('personal', { ...resumeData.personal, summary: newSummary })}
+                                onAutoTailor={setResumeData}
                             />
                         </div>
 
@@ -338,6 +416,27 @@ export default function Builder({ onBackHome, theme, toggleTheme, initialData })
                                 </div>
                             )}
                         </div>
+                        
+                        <InterviewPrepModal
+                            isOpen={showInterviewPrep}
+                            onClose={() => setShowInterviewPrep(false)}
+                            resumeData={resumeData}
+                            jobTitle={resumeData.personal.jobTitle}
+                        />
+                        
+                        <JobRecommendationsModal
+                            isOpen={showJobRecommendations}
+                            onClose={() => setShowJobRecommendations(false)}
+                            resumeData={resumeData}
+                        />
+                        
+                        <ShareModal
+                            isOpen={showShareModal}
+                            onClose={() => setShowShareModal(false)}
+                            resumeId={initialDoc?.id}
+                            resumeData={resumeData}
+                        />
+
                     </div>
                 )}
             </div>

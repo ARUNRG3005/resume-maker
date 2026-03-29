@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { ArrowLeft, Mail, Lock, User } from 'lucide-react';
+import { ArrowRight, User, LogIn, Github, Lock, Mail, Users, Star, FileText, UserPlus } from 'lucide-react';
+import BorderGlow from './BorderGlow';
 import ThemeToggle from './ThemeToggle';
 
 export default function Auth({ initialMode = 'login', onBackHome, onAuthSuccess, theme, toggleTheme }) {
@@ -33,7 +34,8 @@ export default function Auth({ initialMode = 'login', onBackHome, onAuthSuccess,
     return (
         <div style={{
             minHeight: '100vh',
-            display: 'flex',
+            width: '100%',
+            display: 'flex-wrap',
             alignItems: 'center',
             justifyContent: 'center',
             position: 'relative',
@@ -58,44 +60,20 @@ export default function Auth({ initialMode = 'login', onBackHome, onAuthSuccess,
                     zIndex: 10
                 }}
             >
-                <ArrowLeft size={20} /> Back to Home
+                <ArrowRight size={20} /> Back to Home
             </button>
 
-            {/* Background Orbs */}
-            <div style={{
-                position: 'absolute',
-                top: '15%',
-                right: '15%',
-                width: '35vw',
-                height: '35vw',
-                background: 'radial-gradient(circle, rgba(255, 0, 234, 0.15) 0%, transparent 70%)',
-                borderRadius: '50%',
-                filter: 'blur(60px)',
-                zIndex: -1,
-                animation: 'pulseGlow 6s ease-in-out infinite alternate-reverse'
-            }} />
-            <div style={{
-                position: 'absolute',
-                bottom: '10%',
-                left: '20%',
-                width: '25vw',
-                height: '25vw',
-                background: 'radial-gradient(circle, rgba(0, 240, 255, 0.15) 0%, transparent 70%)',
-                borderRadius: '50%',
-                filter: 'blur(60px)',
-                zIndex: -1,
-                animation: 'pulseGlow 8s ease-in-out infinite alternate'
-            }} />
-
-            <div className="glass-panel animate-fade-in" style={{
-                width: '100%',
-                maxWidth: '420px',
+            <BorderGlow className="glass-panel animate-fade-in" style={{
+                position: 'relative',
+                width: '200%',
+                maxWidth: '500px',
                 padding: '2.5rem',
                 borderRadius: '24px',
-                boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5), var(--neon-glow)',
-                position: 'relative',
-                zIndex: 1
-            }}>
+                zIndex: 10,
+                border: '1px solid rgba(0, 240, 255, 0.2)',
+                boxShadow: '0 0 50px rgba(0, 0, 0, 0.5), var(--neon-glow)',
+                margin: 'auto'
+            }} borderRadius={24} glowColor="186 100% 50%">
                 <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '2rem' }}>
                     <div style={{ display: 'flex', background: 'rgba(0,0,0,0.2)', padding: '0.25rem', borderRadius: '12px', width: '100%' }}>
                         <button
@@ -141,19 +119,19 @@ export default function Auth({ initialMode = 'login', onBackHome, onAuthSuccess,
                         {mode === 'login' ? 'Sign in to continue to your resumes.' : 'Join us to build your perfect resume.'}
                     </p>
 
-                    <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+                    <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.75rem' }}>
 
                         {mode === 'signup' && (
-                            <div className="animate-fade-in" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                            <div className="animate-fade-in" style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
                                 <label style={{ fontSize: '0.9rem', color: 'var(--text-primary)', fontWeight: 500 }}>Full Name</label>
                                 <div style={{ position: 'relative' }}>
-                                    <User size={18} style={{ position: 'absolute', left: '1rem', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} />
+                                    <User size={18} style={{ position: 'absolute', left: '1.2rem', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-secondary)', zIndex: 10 }} />
                                     <input
                                         type="text"
                                         value={name}
                                         onChange={(e) => setName(e.target.value)}
-                                        className="input-field"
-                                        style={{ width: '100%', paddingLeft: '2.5rem' }}
+                                        className="form-input"
+                                        style={{ width: '100%', padding: '1.1rem 1rem 1.1rem 3rem' }}
                                         placeholder="John Doe"
                                         required={mode === 'signup'}
                                     />
@@ -161,32 +139,32 @@ export default function Auth({ initialMode = 'login', onBackHome, onAuthSuccess,
                             </div>
                         )}
 
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
                             <label style={{ fontSize: '0.9rem', color: 'var(--text-primary)', fontWeight: 500 }}>Email Address</label>
                             <div style={{ position: 'relative' }}>
-                                <Mail size={18} style={{ position: 'absolute', left: '1rem', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} />
+                                <Mail size={18} style={{ position: 'absolute', left: '1.2rem', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-secondary)', zIndex: 10 }} />
                                 <input
                                     type="email"
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
-                                    className="input-field"
-                                    style={{ width: '100%', paddingLeft: '2.5rem' }}
+                                    className="form-input"
+                                    style={{ width: '100%', padding: '1.1rem 1rem 1.1rem 3rem' }}
                                     placeholder="name@example.com"
                                     required
                                 />
                             </div>
                         </div>
 
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
                             <label style={{ fontSize: '0.9rem', color: 'var(--text-primary)', fontWeight: 500 }}>Password</label>
                             <div style={{ position: 'relative' }}>
-                                <Lock size={18} style={{ position: 'absolute', left: '1rem', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} />
+                                <Lock size={18} style={{ position: 'absolute', left: '1.2rem', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-secondary)', zIndex: 10 }} />
                                 <input
                                     type="password"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
-                                    className="input-field"
-                                    style={{ width: '100%', paddingLeft: '2.5rem' }}
+                                    className="form-input"
+                                    style={{ width: '100%', padding: '1.1rem 1rem 1.1rem 3rem' }}
                                     placeholder="••••••••"
                                     required
                                     minLength="8"
@@ -205,7 +183,7 @@ export default function Auth({ initialMode = 'login', onBackHome, onAuthSuccess,
                         </button>
                     </form>
                 </div>
-            </div>
+            </BorderGlow>
         </div>
     );
 }

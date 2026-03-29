@@ -4,13 +4,26 @@ import Home from './components/Home';
 import Builder from './components/Builder';
 import ThemeToggle from './components/ThemeToggle';
 import Auth from './components/Auth';
+import Dashboard from './components/Dashboard';
 import ErrorBoundary from './components/ErrorBoundary';
+import SharedResume from './components/SharedResume';
 
 function App() {
-  const [view, setView] = useState('home'); // 'home' or 'builder' or 'login' or 'signup'
+  const [view, setView] = useState(() => {
+    if (typeof window !== 'undefined' && window.location.pathname.startsWith('/share/')) {
+      return 'shared_resume';
+    }
+    return 'home';
+  });
+  const [sharedId] = useState(() => {
+    if (typeof window !== 'undefined' && window.location.pathname.startsWith('/share/')) {
+      return window.location.pathname.split('/')[2];
+    }
+    return null;
+  });
   const [theme, setTheme] = useState('dark');
   const [user, setUser] = useState(null);
-  const [builderData, setBuilderData] = useState(null);
+  const [builderData, setBuilderData] = useState(null); // Will hold the { id, name, lastModified, data } object instead of just data
 
   const toggleTheme = () => {
     setTheme(prev => (prev === 'dark' ? 'light' : 'dark'));
@@ -23,23 +36,39 @@ function App() {
   // Handler for successful auth flow
   const handleAuthSuccess = (userData) => {
     setUser(userData);
-    // When done authenticating, go straight into the tool
-    setView('builder');
+    setView('dashboard');
   };
 
   const handleLogout = () => {
     setUser(null);
+    setView('home');
   };
 
-  const handleStartBuilder = (data = null) => {
-    setBuilderData(data);
+  const handleStartBuilder = (resumeObj) => {
+    // Check if what was passed is raw data (from Home) or a versioned object (from Dashboard)
+    if (resumeObj && !resumeObj.id) {
+       // From Home
+       const newDoc = {
+           id: crypto.randomUUID(),
+           name: 'My Custom Resume',
+           lastModified: Date.now(),
+           data: resumeObj
+       };
+       setBuilderData(newDoc);
+    } else {
+       // From Dashboard
+       setBuilderData(resumeObj);
+    }
     setView('builder');
   };
 
   return (
     <ErrorBoundary>
+
+      {view === 'shared_resume' && <SharedResume id={sharedId} onBackHome={() => setView('home')} />}
       {view === 'home' && <Home user={user} onLogout={handleLogout} onStart={handleStartBuilder} onLogin={() => setView('login')} onSignup={() => setView('signup')} theme={theme} toggleTheme={toggleTheme} />}
-      {view === 'builder' && <Builder initialData={builderData} onBackHome={() => setView('home')} theme={theme} toggleTheme={toggleTheme} />}
+      {view === 'dashboard' && <Dashboard user={user} onLogout={handleLogout} onStartBuilder={handleStartBuilder} onBackHome={() => setView('home')} />}
+      {view === 'builder' && <Builder initialDoc={builderData} user={user} onBackHome={() => setView('home')} onBackDashboard={() => setView('dashboard')} theme={theme} toggleTheme={toggleTheme} />}
       {view === 'login' && <Auth initialMode="login" onBackHome={() => setView('home')} onAuthSuccess={handleAuthSuccess} theme={theme} toggleTheme={toggleTheme} />}
       {view === 'signup' && <Auth initialMode="signup" onBackHome={() => setView('home')} onAuthSuccess={handleAuthSuccess} theme={theme} toggleTheme={toggleTheme} />}
     </ErrorBoundary>

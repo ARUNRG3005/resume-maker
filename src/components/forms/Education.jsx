@@ -44,7 +44,7 @@ export default function Education({ data, onChange }) {
                         </button>
                     </div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }} className="animate-fade-in delay-100">
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1.25rem' }} className="animate-fade-in delay-100">
                         <div className="form-group" style={{ marginBottom: 0 }}>
                             <label className="form-label">School / University</label>
                             <input
@@ -67,7 +67,7 @@ export default function Education({ data, onChange }) {
                         </div>
                     </div>
 
-                    <div className="form-group animate-fade-in delay-200" style={{ marginTop: '1.25rem' }}>
+                    <div className="form-group animate-fade-in delay-200">
                         <label className="form-label">Field of Study</label>
                         <input
                             type="text"
@@ -78,7 +78,7 @@ export default function Education({ data, onChange }) {
                         />
                     </div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }} className="animate-fade-in delay-300">
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1.25rem' }} className="animate-fade-in delay-300">
                         <div className="form-group" style={{ marginBottom: 0 }}>
                             <label className="form-label">Start Date</label>
                             <input
@@ -99,7 +99,7 @@ export default function Education({ data, onChange }) {
                         </div>
                     </div>
 
-                    <div className="form-group animate-fade-in delay-400" style={{ position: 'relative', marginTop: '1.25rem' }}>
+                    <div className="form-group animate-fade-in delay-400" style={{ position: 'relative' }}>
                         <label className="form-label">Description (Optional)</label>
                         <textarea
                             className="form-input"

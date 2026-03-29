@@ -42,7 +42,7 @@ export default function Certifications({ data, onChange }) {
                         </button>
                     </div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }} className="animate-fade-in delay-100">
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1.25rem' }} className="animate-fade-in delay-100">
                         <div className="form-group" style={{ marginBottom: 0 }}>
                             <label className="form-label">Certification Name</label>
                             <input

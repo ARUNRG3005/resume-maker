@@ -44,7 +44,7 @@ export default function Projects({ data, onChange }) {
                         </button>
                     </div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }} className="animate-fade-in delay-100">
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1.25rem' }} className="animate-fade-in delay-100">
                         <div className="form-group" style={{ marginBottom: 0 }}>
                             <label className="form-label">Project Name</label>
                             <input
@@ -67,7 +67,7 @@ export default function Projects({ data, onChange }) {
                         </div>
                     </div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }} className="animate-fade-in delay-200">
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1.25rem' }} className="animate-fade-in delay-200">
                         <div className="form-group" style={{ marginBottom: 0 }}>
                             <label className="form-label">Start Date</label>
                             <input
@@ -88,7 +88,7 @@ export default function Projects({ data, onChange }) {
                         </div>
                     </div>
 
-                    <div className="form-group animate-fade-in delay-300" style={{ position: 'relative', marginTop: '1.25rem' }}>
+                    <div className="form-group animate-fade-in delay-300" style={{ position: 'relative' }}>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
                             <label className="form-label" style={{ marginBottom: 0 }}>Description</label>
                             <AIHelper

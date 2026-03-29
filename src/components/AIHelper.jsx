@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Sparkles, Loader2, X, Check } from 'lucide-react';
+import BorderGlow from './BorderGlow';
 
 export default function AIHelper({ onResult, action, payload, tooltip, className, style, customLabel }) {
     const [loading, setLoading] = useState(false);
@@ -25,6 +26,10 @@ export default function AIHelper({ onResult, action, payload, tooltip, className
                 result = await ai.suggestSkills(payload.jobTitle, payload.existingSkills);
             } else if (action === 'ats') {
                 result = await ai.analyzeATSScore(payload.missingKeywords, payload.currentSummary);
+            } else if (action === 'tailor') {
+                result = await ai.tailorExperience(payload.text, payload.jobTitle, payload.jobDescription);
+            } else if (action === 'metrics') {
+                result = await ai.suggestMetrics(payload.text);
             }
 
             if (result) {
@@ -100,10 +105,10 @@ export default function AIHelper({ onResult, action, payload, tooltip, className
             {modalOpen && (
                 <div style={{
                     position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
-                    backgroundColor: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(8px)',
+                    backgroundColor: 'rgba(0,0,0,0.7)',
                     zIndex: 99999, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem'
                 }}>
-                    <div className="glass-panel animate-fade-in" style={{
+                    <BorderGlow className="glass-panel animate-fade-in" style={{
                         background: 'var(--surface)',
                         border: '1px solid var(--border)',
                         borderRadius: '16px',
@@ -113,7 +118,7 @@ export default function AIHelper({ onResult, action, payload, tooltip, className
                         flexDirection: 'column',
                         overflow: 'hidden',
                         boxShadow: 'var(--shadow-lg), var(--neon-glow)'
-                    }}>
+                    }} borderRadius={16} glowColor="186 100% 50%">
                         {/* Header */}
                         <div style={{ padding: '1rem 1.5rem', borderBottom: '1px solid var(--border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'rgba(255,255,255,0.02)' }}>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--primary)' }}>
@@ -147,7 +152,7 @@ export default function AIHelper({ onResult, action, payload, tooltip, className
                                 <Check size={18} /> Apply Changes
                             </button>
                         </div>
-                    </div>
+                    </BorderGlow>
                 </div>
             )}
         </>
