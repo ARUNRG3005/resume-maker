@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import floatingResumeVideo from '../assets/floating_resume.mp4';
+
 import amLogo from '../assets/am_logo.jpg';
 import { Sparkles, FileText, ArrowRight, Zap, Palette, CheckCircle, Cpu, PenTool, LayoutTemplate, Download } from 'lucide-react';
 import BorderGlow from './BorderGlow';
@@ -208,7 +208,7 @@ export default function Home({ user, onLogout, onStart, onLogin, onSignup, theme
                             boxShadow: '0 25px 60px rgba(0,0,0,0.4), var(--neon-glow)'
                         }}>
                             <video
-                                src={floatingResumeVideo}
+                                src="/floating_resume.mp4"
                                 autoPlay
                                 loop
                                 muted
