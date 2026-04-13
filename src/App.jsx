@@ -7,6 +7,7 @@ import Auth from './components/Auth';
 import Dashboard from './components/Dashboard';
 import ErrorBoundary from './components/ErrorBoundary';
 import SharedResume from './components/SharedResume';
+import InstallPWA from './components/InstallPWA';
 
 function App() {
   const [view, setView] = useState(() => {
@@ -23,7 +24,7 @@ function App() {
   });
   const [theme, setTheme] = useState('dark');
   const [user, setUser] = useState(null);
-  const [builderData, setBuilderData] = useState(null); // Will hold the { id, name, lastModified, data } object instead of just data
+  const [builderData, setBuilderData] = useState(null);
 
   const toggleTheme = () => {
     setTheme(prev => (prev === 'dark' ? 'light' : 'dark'));
@@ -33,7 +34,6 @@ function App() {
     document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
 
-  // Handler for successful auth flow
   const handleAuthSuccess = (userData) => {
     setUser(userData);
     setView('dashboard');
@@ -45,9 +45,7 @@ function App() {
   };
 
   const handleStartBuilder = (resumeObj) => {
-    // Check if what was passed is raw data (from Home) or a versioned object (from Dashboard)
     if (resumeObj && !resumeObj.id) {
-       // From Home
        const newDoc = {
            id: crypto.randomUUID(),
            name: 'My Custom Resume',
@@ -56,7 +54,6 @@ function App() {
        };
        setBuilderData(newDoc);
     } else {
-       // From Dashboard
        setBuilderData(resumeObj);
     }
     setView('builder');
@@ -64,7 +61,7 @@ function App() {
 
   return (
     <ErrorBoundary>
-
+      <InstallPWA />
       {view === 'shared_resume' && <SharedResume id={sharedId} onBackHome={() => setView('home')} />}
       {view === 'home' && <Home user={user} onLogout={handleLogout} onStart={handleStartBuilder} onLogin={() => setView('login')} onSignup={() => setView('signup')} theme={theme} toggleTheme={toggleTheme} />}
       {view === 'dashboard' && <Dashboard user={user} onLogout={handleLogout} onStartBuilder={handleStartBuilder} onBackHome={() => setView('home')} />}
