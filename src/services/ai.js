@@ -5,7 +5,8 @@ const genAI = API_KEY ? new GoogleGenerativeAI(API_KEY) : null;
 
 const getModel = () => {
     if (!genAI) throw new Error("VITE_GEMINI_API_KEY environment variable is missing.");
-    return genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+    // Changed to 2.0-flash since 2.5-flash is highly demanded and 1.5-flash is no longer supported
+    return genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 };
 
 export const generateSummary = async (jobTitle, experience, skills, categoryFocus) => {
