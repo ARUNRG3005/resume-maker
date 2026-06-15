@@ -4,6 +4,18 @@ import { VitePWA } from 'vite-plugin-pwa'
 
 // https://vite.dev/config/
 export default defineConfig({
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'vendor-react': ['react', 'react-dom'],
+          'vendor-three': ['three'],
+          'vendor-animation': ['framer-motion', 'gsap', 'motion'],
+          'vendor-pdf': ['html2pdf.js'],
+        },
+      },
+    },
+  },
   plugins: [
     react(),
     VitePWA({
